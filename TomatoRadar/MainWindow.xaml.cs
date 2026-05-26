@@ -242,7 +242,9 @@ namespace TomatoRadar
             NotificationMessageUtils.InitializeNotificationMessageDataGrid(DataGridNotificationMessages);
             NetworkUtils.InitializeHttpClient();
 
-            string shipInfoPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Resources\Json\ships_wg.json");
+            // string shipInfoPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Resources\Json\ships_wg.json");
+            // TODO: Now we are still using ships info from lxdev.org, which extracts out ships.json
+            string shipInfoPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Resources\Json\ships.json");
             string shipInfoPathLesta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Resources\Json\ships_lesta.json");
             ShipInfoUtils.RegisterShipInfoFile(Server.EU, shipInfoPath);
             ShipInfoUtils.RegisterShipInfoFile(Server.NA, shipInfoPath);
