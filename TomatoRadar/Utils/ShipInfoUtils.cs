@@ -70,6 +70,9 @@ namespace TomatoRadar.Utils
                     {
                         Language.ZH_CN => "name_zh-cn",
                         Language.EN_US => "name_en-us",
+                        Language.RU_RU => "name_ru-ru",
+                        Language.JA_JP => "name_ja-jp",
+                        Language.ZH_TW => "name_zh-tw",
                         _ => null,
                     };
                     if (field == null)

@@ -140,7 +140,18 @@ namespace TomatoRadar.Utils
                 {
                     if (Convert.ToInt32(entry.LatestDate) > entry.LocalDate)
                     {
-                        await CheckForShiplistUpdate(entry);
+                        try
+                        {
+                            await CheckForShiplistUpdate(entry);
+                        }
+                        catch (Exception ex)
+                        {
+                            LogUtils.WriteError($"Shiplist update failed for {entry.Key}", ex);
+                            if (ex is FileFormatException)
+                            {
+                                NotificationMessageUtils.CreateMessage(MessageType.ERROR, $"{entry.Key.ToUpper()} {Application.Current.FindResource("NotificationMessageUpdateFileHashError") as string}");
+                            }
+                        }
                     }
                 }
 
@@ -182,8 +193,10 @@ namespace TomatoRadar.Utils
                     using SHA256 sha = SHA256.Create();
                     using FileStream fs = new($@"{downloadDirectory}\{entry.LatestFileName}", FileMode.Open);
                     fs.Position = 0;
-                    if (BitConverter.ToString(sha.ComputeHash(fs)).Replace("-", "") != entry.LatestSha256)
+                    string computedHash = BitConverter.ToString(sha.ComputeHash(fs)).Replace("-", "");
+                    if (computedHash != entry.LatestSha256)
                     {
+                        LogUtils.WriteError($"Shiplist hash mismatch for {entry.Key}: expected {entry.LatestSha256}, actual {computedHash}", new FileFormatException("FileHashInvalid"));
                         throw new FileFormatException("FileHashInvalid");
                     }
                 }

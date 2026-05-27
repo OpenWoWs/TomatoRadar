@@ -3,4 +3,7 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
     <system:String x:Key="ComboBoxItemLanguageNameEN_US">English</system:String>
     <system:String x:Key="ComboBoxItemLanguageNameZH_CN">简体中文</system:String>
+    <system:String x:Key="ComboBoxItemLanguageNameRU_RU">Русский</system:String>
+    <system:String x:Key="ComboBoxItemLanguageNameJA_JP">日本語</system:String>
+    <system:String x:Key="ComboBoxItemLanguageNameZH_TW">繁體中文</system:String>
 </ResourceDictionary>

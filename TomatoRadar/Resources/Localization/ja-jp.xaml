@@ -1,0 +1,417 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <system:String x:Key="WindowTitleConfig">設定</system:String>
+    <system:String x:Key="WindowTitleLanguagePriority">艦名表示言語の優先順位</system:String>
+    <system:String x:Key="WindowTitleTomatoRadar">Tomato Radar</system:String>
+
+    <system:String x:Key="DataGridHeaderPlayer">プレイヤー</system:String>
+    <system:String x:Key="DataGridHeaderStatisticsAccount">アカウント</system:String>
+    <system:String x:Key="DataGridHeaderStatisticsWeighted">加重</system:String>
+    <system:String x:Key="DataGridHeaderStatisticsShip">艦艇</system:String>
+    <system:String x:Key="DataGridHeaderTag">タグ</system:String>
+    <system:String x:Key="DataGridHeaderServer">サーバー</system:String>
+    <system:String x:Key="DataGridHeaderID">ID</system:String>
+    <system:String x:Key="DataGridHeaderName">名前</system:String>
+    <system:String x:Key="DataGridHeaderTime">時間</system:String>
+    <system:String x:Key="DataGridHeaderMessage">メッセージ</system:String>
+    <system:String x:Key="DataGridToolTipAccount">アカウント</system:String>
+    <system:String x:Key="DataGridToolTipWeighted">加重</system:String>
+    <system:String x:Key="DataGridToolTipShip">艦艇</system:String>
+    <system:String x:Key="DataGridToolTipBattles">戦闘数</system:String>
+    <system:String x:Key="DataGridToolTipWinrate">勝率</system:String>
+    <system:String x:Key="DataGridToolTipAvgExp">平均経験値</system:String>
+    <system:String x:Key="DataGridToolTipAvgDmg">平均ダメージ</system:String>
+    <system:String x:Key="DataGridToolTipSolo">ソロ</system:String>
+    <system:String x:Key="DataGridToolTipDiv2">2人編隊</system:String>
+    <system:String x:Key="DataGridToolTipDiv3">3人編隊</system:String>
+
+    <system:String x:Key="BtnSave">保存</system:String>
+    <system:String x:Key="BtnCancel">キャンセル</system:String>
+    <system:String x:Key="BtnDefault">デフォルト</system:String>
+    <system:String x:Key="BtnInsert">挿入</system:String>
+    <system:String x:Key="BtnBrowse">参照</system:String>
+    <TextBlock x:Key="BtnCheckForUpdates" TextAlignment="Center">アップデート<LineBreak/>を確認</TextBlock>
+    <system:String x:Key="BtnConfigure">設定</system:String>
+    <system:String x:Key="BtnRefresh">更新</system:String>
+    <system:String x:Key="BtnOpen">リプレイを開く</system:String>
+    <system:String x:Key="BtnConfig">設定</system:String>
+    <system:String x:Key="BtnScreenshot">スクリーンショット</system:String>
+
+    <system:String x:Key="ComboBoxItemLanguageAuto">自動</system:String>
+    <system:String x:Key="ComboBoxItemSortByShipTypeAndShipTierAndWinrateDescending">艦種/Tier/勝率 ↓</system:String>
+    <system:String x:Key="ComboBoxItemSortByShipTypeAndWinrateDescending">艦種/勝率 ↓</system:String>
+    <system:String x:Key="ComboBoxItemSortByShipTierAndShipTypeAndWinrateDescending">Tier/艦種/勝率 ↓</system:String>
+    <system:String x:Key="ComboBoxItemSortByShipTierAndWinrateDescending">Tier/勝率 ↓</system:String>
+    <system:String x:Key="ComboBoxItemSortByWinrateDescending">勝率 ↓</system:String>
+    <system:String x:Key="ComboBoxItemSortByWinrateAscending">勝率 ↑</system:String>
+    <system:String x:Key="ComboBoxItemSortByBattlesDescending">戦闘数 ↓</system:String>
+    <system:String x:Key="ComboBoxItemSortByBattlesAscending">戦闘数 ↑</system:String>
+    <system:String x:Key="ComboBoxItemMirroredDisplayDisabled">通常</system:String>
+    <system:String x:Key="ComboBoxItemMirroredDisplayEnabled">ミラー</system:String>
+    <system:String x:Key="ComboBoxItemPlayerNamesVisible">表示</system:String>
+    <system:String x:Key="ComboBoxItemPlayerNamesHidden">非表示</system:String>
+    <system:String x:Key="ComboBoxItemChartTypeWinrateAscending">折れ線: 勝率 ↑</system:String>
+    <system:String x:Key="ComboBoxItemChartTypeWinrateDescending">折れ線: 勝率 ↓</system:String>
+    <system:String x:Key="ComboBoxItemChartTypeShipTypeAndWinrateDescending">棒: 艦種/勝率 ↓</system:String>
+    <system:String x:Key="ComboBoxItemChartTypeShipTierAndWinrateDescending">棒: Tier/勝率 ↓</system:String>
+    <system:String x:Key="ComboBoxItemChartTypeShipTypeAndShipTierAndWinrateDescending">棒: 艦種/Tier/勝率 ↓</system:String>
+    <system:String x:Key="ComboBoxItemChartTypeShipTierAndShipTypeAndWinrateDescending">棒: Tier/艦種/勝率 ↓</system:String>
+    <system:String x:Key="ComboBoxItemServerAuto">自動</system:String>
+    <system:String x:Key="ComboBoxItemServerRU">RU</system:String>
+    <system:String x:Key="ComboBoxItemServerEU">EU</system:String>
+    <system:String x:Key="ComboBoxItemServerNA">NA</system:String>
+    <system:String x:Key="ComboBoxItemServerASIA">ASIA</system:String>
+    <system:String x:Key="ComboBoxItemServerCN">CN</system:String>
+    <system:String x:Key="ComboBoxItemAccountWinrate">アカウント</system:String>
+    <system:String x:Key="ComboBoxItemWeightedWinrate">加重</system:String>
+    <system:String x:Key="ComboBoxItemNoColor">色なし</system:String>
+    <system:String x:Key="ComboBoxItem4Colors">4色</system:String>
+    <system:String x:Key="ComboBoxItem8Colors">8色</system:String>
+    <system:String x:Key="ComboBoxItemRainbow">虹色</system:String>
+    <system:String x:Key="ComboBoxItemVisible">表示</system:String>
+    <system:String x:Key="ComboBoxItemFaded">薄く表示</system:String>
+    <system:String x:Key="ComboBoxItemCollapsed">折りたたみ</system:String>
+    <system:String x:Key="ComboBoxItemAPITypeVortex">Vortex API</system:String>
+    <system:String x:Key="ComboBoxItemAPITypeWGPublic">WG Public API</system:String>
+    <system:String x:Key="ComboBoxItemAPITypeWGPublicWithYuyukoProxy">WG Public API (Yuyuko Proxy)</system:String>
+    <system:String x:Key="ComboBoxItemAPITypeLestaPublic">Lesta Public API</system:String>
+
+    <system:String x:Key="LabelAllies">味方</system:String>
+    <system:String x:Key="LabelEnemies">敵</system:String>
+    <system:String x:Key="LabelAverageData">平均</system:String>
+    <system:String x:Key="LabelAverageAccountWinrate">アカウント</system:String>
+    <system:String x:Key="LabelAverageWeightedWinrate">加重</system:String>
+    <system:String x:Key="LabelAverageBattleCount">戦闘数</system:String>
+    <system:String x:Key="LabelGamePathIsSet">ゲームパス設定済み</system:String>
+    <system:String x:Key="LabelGamePathIsNotSet">ゲームパス未設定</system:String>
+    <system:String x:Key="LabelChartType">チャート種類:</system:String>
+    <system:String x:Key="LabelPlayerListSortBy">プレイヤー並び替え:</system:String>
+    <system:String x:Key="LabelDisplayStyle">表示スタイル:</system:String>
+    <system:String x:Key="LabelPlayerNames">プレイヤー名:</system:String>
+    <system:String x:Key="LabelServer">サーバー</system:String>
+    <system:String x:Key="LabelGamePath">ゲームパス</system:String>
+    <system:String x:Key="LabelShipNameLanguage">艦名表示言語</system:String>
+    <TextBlock x:Key="LabelMaximumRetryAttemptsOnError" TextAlignment="Right">エラー時の最大<LineBreak/>リトライ回数</TextBlock>
+    <system:String x:Key="LabelSoftwareVersion">アプリバージョン</system:String>
+    <system:String x:Key="LabelShipListVersion">艦艇リストバージョン</system:String>
+    <system:String x:Key="LabelWinrateRangeSettings">勝率範囲設定</system:String>
+    <system:String x:Key="LabelWinrateType">使用する勝率</system:String>
+    <system:String x:Key="LabelColorStyle">配色スタイル</system:String>
+    <system:String x:Key="LabelIcon">アイコン</system:String>
+    <system:String x:Key="LabelTomatoIcon">トマト</system:String>
+    <system:String x:Key="LabelUnicumIcon">ユニカム</system:String>
+    <system:String x:Key="LabelHiddenIcon">非公開 / 取得不可</system:String>
+    <system:String x:Key="LabelWatchIcon">注目リスト</system:String>
+    <system:String x:Key="LabelColumnVisibility">列の表示</system:String>
+    <system:String x:Key="LabelColumnVisibilityAccount">アカウント</system:String>
+    <system:String x:Key="LabelColumnVisibilityWeighted">加重</system:String>
+    <system:String x:Key="LabelColumnVisibilityShip">艦艇</system:String>
+    <system:String x:Key="LabelColumnVisibilityAccountAvgExp">アカウント平均経験値</system:String>
+    <system:String x:Key="LabelColumnVisibilityShipAvgExp">艦艇平均経験値</system:String>
+    <system:String x:Key="LabelColumnVisibilityShipAvgDmg">艦艇平均ダメージ</system:String>
+    <system:String x:Key="LabelColumnVisibilityTag">タグ</system:String>
+    <system:String x:Key="LabelFontSize">フォントサイズ</system:String>
+    <system:String x:Key="LabelFontSizePlayerColumn">プレイヤー列</system:String>
+    <system:String x:Key="LabelFontSizeStatisticsColumn">統計列</system:String>
+    <system:String x:Key="LabelFontSizeDetailedStatistics">詳細統計</system:String>
+    <system:String x:Key="LabelFontSizeOutputText">出力テキスト</system:String>
+    <system:String x:Key="LabelOutputTextTemplateGeneralStatistics">出力テキストテンプレート（全体統計）</system:String>
+    <system:String x:Key="LabelOutputTextTemplateParticularPlayerStatistics">出力テキストテンプレート（特定プレイヤー統計）</system:String>
+    <system:String x:Key="LabelInsertTemplateTag">タグを挿入</system:String>
+    <system:String x:Key="LabelTemplateTag">タグ:</system:String>
+    <system:String x:Key="LabelTagDefinition">タグ定義</system:String>
+    <system:String x:Key="LabelTomato">トマト =</system:String>
+    <system:String x:Key="LabelUnicum">ユニカム =</system:String>
+    <system:String x:Key="LabelWinrate">勝率</system:String>
+    <system:String x:Key="LabelBattles">戦闘数</system:String>
+    <system:String x:Key="LabelAnd">かつ</system:String>
+    <system:String x:Key="LabelBelow">以下</system:String>
+    <system:String x:Key="LabelAbove">以上</system:String>
+    <system:String x:Key="LabelDelimiter">艦名間の区切り文字（デフォルト: 空白）</system:String>
+    <system:String x:Key="LabelWeightedWinrate">加重勝率</system:String>
+    <system:String xml:space="preserve" x:Key="LabelWeightedWinrateStep1">ステップ1: </system:String>
+    <system:String x:Key="LabelWeightedWinrateStep1Line1">ソロ、2人編隊、3人編隊の</system:String>
+    <system:String x:Key="LabelWeightedWinrateStep1Line2">アカウント勝率から加重アカウント勝率を計算。</system:String>
+    <system:String x:Key="LabelWeightedWinrateWeightMultiplier">加重倍率</system:String>
+    <system:String x:Key="LabelWeightedWinrateAccountSoloWeightMultiplier">ソロ</system:String>
+    <system:String x:Key="LabelWeightedWinrateAccountDiv2WeightMultiplier">2人編隊</system:String>
+    <system:String x:Key="LabelWeightedWinrateAccountDiv3WeightMultiplier">3人編隊</system:String>
+    <system:String x:Key="LabelWeightedWinratePieChartSolo">ソロ</system:String>
+    <system:String x:Key="LabelWeightedWinratePieChartDiv2">2人編隊</system:String>
+    <system:String x:Key="LabelWeightedWinratePieChartDiv3">3人編隊</system:String>
+    <system:String x:Key="LabelWeightedWinratePieChartShip">艦艇</system:String>
+    <system:String xml:space="preserve" x:Key="LabelWeightedWinrateStep2">ステップ2: </system:String>
+    <system:String x:Key="LabelWeightedWinrateStep2Line1">加重アカウント勝率と艦艇勝率から</system:String>
+    <system:String x:Key="LabelWeightedWinrateStep2Line2">加重勝率を計算。</system:String>
+    <system:String x:Key="LabelWeightedWinrateShipMaxWeight">艦艇勝率の最大加重</system:String>
+    <system:String x:Key="LabelWeightedWinrateShipBattlesAtMaxWeight">最大加重時の艦艇戦闘数</system:String>
+    <system:String x:Key="LabelWeightedWinratePieChartDescriptionLine1">各戦闘タイプの加重勝率への寄与</system:String>
+    <system:String x:Key="LabelWeightedWinratePieChartDescriptionLine2">（艦艇戦闘数 ≥ 最大加重時の艦艇戦闘数の場合）</system:String>
+    <system:String x:Key="LabelAboutLine1">このアプリケーションは完全無料で、MITライセンスの下でオープンソースです。</system:String>
+    <system:String xml:space="preserve" x:Key="LabelAboutLine2Part1">Web: </system:String>
+    <system:String xml:space="preserve" x:Key="LabelAboutLine2Part2">  QQグループ: 1012624096 / 272868560</system:String>
+    <system:String x:Key="LabelWatchList">注目リスト</system:String>
+    <system:String x:Key="LabelPositive">ポジティブ</system:String>
+    <system:String x:Key="LabelNegative">ネガティブ</system:String>
+    <system:String x:Key="LabelCheater">チーター / Bot</system:String>
+    <system:String x:Key="LabelAPIType">APIタイプ</system:String>
+    <system:String x:Key="LabelAPITypeDefault">EU / NA / ASIA</system:String>
+    <system:String x:Key="LabelAPITypeRU">RU</system:String>
+    <system:String x:Key="LabelAPITypeCN">CN</system:String>
+
+    <system:String x:Key="TabHeaderGeneral">一般</system:String>
+    <system:String x:Key="TabHeaderAppearance">外観</system:String>
+    <system:String x:Key="TabHeaderWinrateAndTag">勝率 &amp; タグ</system:String>
+    <system:String x:Key="TabHeaderTextOutput">テキスト出力</system:String>
+    <system:String x:Key="TabHeaderTextOutputGeneralStatistics">（全体統計）</system:String>
+    <system:String x:Key="TabHeaderTextOutputParticularPlayerStatistics">（特定プレイヤー統計）</system:String>
+    <system:String x:Key="TabHeaderWatchList">注目リスト</system:String>
+    <system:String x:Key="TabHeaderAdvanced">詳細</system:String>
+
+    <system:String x:Key="ToolTipResetToDefault">デフォルトに戻す</system:String>
+    <ToolTip x:Key="ToolTipGamePath">
+        <TextBlock>
+            右側のドロップダウンボタンで自動検出されたゲームパスを選択することをお勧めします。
+            <LineBreak/>
+            手動で選択する場合は、リプレイフォルダではなくゲームフォルダ（WorldOfWarships.exeがある場所）を選択してください。
+        </TextBlock>
+    </ToolTip>
+
+    <ToolTip x:Key="ToolTipMaximumRetryAttemptsOnError">
+        <TextBlock>
+            データ取得中にエラーが発生した場合、指定された回数まで再試行します。
+            <LineBreak/>
+            0に設定すると再試行を無効にします。
+        </TextBlock>
+    </ToolTip>
+
+    <ToolTip x:Key="ToolTipWinrateTypeUsed">
+        <TextBlock>
+            選択された勝率タイプがチャートに表示され、タグ割り当てに使用されます。
+        </TextBlock>
+    </ToolTip>
+
+    <ToolTip x:Key="ToolTipWeightedWinrate">
+        <TextBlock>
+            加重勝率は、編隊プレイの要素を考慮した上で、特定の艦艇でプレイするプレイヤーの潜在的なパフォーマンスを評価したものです。
+        </TextBlock>
+    </ToolTip>
+
+    <ToolTip x:Key="ToolTipWeightedWinrateStep1">
+        <TextBlock>
+            アカウントソロ加重 = アカウントソロ戦闘数 * ソロ加重倍率
+            <LineBreak/>
+            アカウント2人編隊加重 = アカウント2人編隊戦闘数 * 2人編隊加重倍率
+            <LineBreak/>
+            アカウント3人編隊加重 = アカウント3人編隊戦闘数 * 3人編隊加重倍率
+            <LineBreak/>
+            加重アカウント勝率 = (アカウントソロ勝率 * ソロ加重 + アカウント2人編隊勝率 * 2人編隊加重 + アカウント3人編隊勝率 * 3人編隊加重) / (ソロ加重 + 2人編隊加重 + 3人編隊加重)
+        </TextBlock>
+    </ToolTip>
+
+    <ToolTip x:Key="ToolTipWeightedWinrateWeightMultiplier">
+        <TextBlock>
+            加重倍率は各編隊タイプの戦闘数と共に各編隊タイプの加重を調整します。
+            <LineBreak/>
+            全ての倍率が等しい場合、加重アカウント勝率はアカウント勝率と等しくなります。
+        </TextBlock>
+    </ToolTip>
+
+    <ToolTip x:Key="ToolTipWeightedWinrateStep2">
+        <TextBlock>
+            艦艇加重 = 艦艇勝率の最大加重 / 艦艇戦闘数&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;（艦艇戦闘数 ＜ 最大加重時の艦艇戦闘数）
+            <LineBreak/>
+            &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;艦艇勝率の最大加重&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;（艦艇戦闘数 ≥ 最大加重時の艦艇戦闘数）
+            <LineBreak/>
+            アカウント加重 = 1 - 艦艇加重
+            <LineBreak/>
+            加重勝率 = 加重アカウント勝率 * アカウント加重 + 艦艇勝率 * 艦艇加重
+        </TextBlock>
+    </ToolTip>
+
+    <ToolTip x:Key="ToolTipColorStyle">
+        <TextBlock>
+            色なし:
+            <LineBreak/>
+            <Run Foreground="#000000" Background="#FFFFFF">任意の勝率</Run>
+            <LineBreak/>
+            <LineBreak/>
+            4色:
+            <LineBreak/>
+            <Run Foreground="#FFFFFF" Background="#FE0E00">≤47%</Run>&#160;
+            <Run Foreground="#FFFFFF" Background="#FFC71F">47%-52%</Run>&#160;
+            <Run Foreground="#FFFFFF" Background="#318000">52%-60%</Run>&#160;
+            <Run Foreground="#FFFFFF" Background="#D042F3">＞60%</Run>
+            <LineBreak/>
+            <LineBreak/>
+            8色（WoWS Numbers定義）:
+            <LineBreak/>
+            <Run Foreground="#FFFFFF" Background="#FE0E00">≤47%</Run>&#160;
+            <Run Foreground="#FFFFFF" Background="#FE7903">47%-49%</Run>&#160;
+            <Run Foreground="#FFFFFF" Background="#FFC71F">49%-52%</Run>&#160;
+            <Run Foreground="#FFFFFF" Background="#44B300">52%-54%</Run>&#160;
+            <Run Foreground="#FFFFFF" Background="#318000">54%-56%</Run>&#160;
+            <Run Foreground="#FFFFFF" Background="#02C9B3">56%-60%</Run>&#160;
+            <Run Foreground="#FFFFFF" Background="#D042F3">60%-65%</Run>&#160;
+            <Run Foreground="#FFFFFF" Background="#A00DC5">＞65%</Run>
+            <LineBreak/>
+            <LineBreak/>
+            虹色（無限色）:
+            <LineBreak/>
+            <Run Foreground="#FFFFFF" Background="#FE0E00">≤47%</Run> から <Run Foreground="#FFFFFF" Background="#CC00FF">＞65%</Run> まで連続的に変化
+        </TextBlock>
+    </ToolTip>
+
+    <ToolTip x:Key="ToolTipGeneralStatistics">
+        <TextBlock>
+            このテンプレートは、戦闘開始時またはリプレイファイルを開いたときに出力テキストボックス（右下）に生成されるテキストを制御します。
+        </TextBlock>
+    </ToolTip>
+
+    <ToolTip x:Key="ToolTipParticularPlayerStatistics">
+        <TextBlock>
+            このテンプレートは、特定のプレイヤーの統計をコピーするとき（プレイヤーを右クリック → プレイヤー統計をコピー）に取得されるテキストを制御します。
+        </TextBlock>
+    </ToolTip>
+
+    <ToolTip x:Key="ToolTipWatchList">
+        <TextBlock>
+            これらは注目リストにいる全てのプレイヤーです（プレイヤーを右クリック → 注目リストに追加）。
+            <LineBreak/>
+            プレイヤーを右クリックしてウェブサイトで統計を確認するか、注目リストから削除します。
+            <LineBreak/>
+            注目リストはアプリケーションフォルダ内のWatchList.jsonファイルに保存されます。
+        </TextBlock>
+    </ToolTip>
+
+    <ToolTip x:Key="ToolTipAPIType">
+        <TextBlock>
+            Vortex API: 全ての新機能に対応、全サーバー対応。
+            <LineBreak/>
+            WG Public API: 一部の新機能は非対応。RU &amp; CNサーバーは非対応。これらのサーバーでは選択は無視されVortex APIが使用されます。
+            <LineBreak/>
+            WG Public API (Yuyuko Proxy): WG Public APIと同じですが、中国国内の特定のネットワーク環境でより安定する場合があります。
+            <LineBreak/>
+            <LineBreak/>
+            Vortex APIで継続的にエラーが発生する場合のみ、他のオプションを選択することをお勧めします。
+        </TextBlock>
+    </ToolTip>
+
+    <ToolTip x:Key="ToolTipEnableYuyukoAPIPush">
+        <TextBlock>
+            Yuyuko APIを通じて戦闘データを他のデバイスにプッシュし、より簡単に表示します。（クライアントは開発中）
+            <LineBreak/>
+            選択すると、各戦闘の必須データ（プレイヤー名、UID、クラン、艦艇IDのリストなど）がYuyukoサーバーに送信されます。
+            <LineBreak/>
+            個人情報は収集されません。
+        </TextBlock>
+    </ToolTip>
+
+    <ToolTip x:Key="ToolTipDebugMode">
+        <TextBlock>
+            デバッグ用により詳細なログを生成します。
+        </TextBlock>
+    </ToolTip>
+
+    <system:String x:Key="ListItemAllyAvgAccountWinrate">味方平均アカウント勝率</system:String>
+    <system:String x:Key="ListItemAllyAvgWeightedWinrate">味方平均加重勝率</system:String>
+    <system:String x:Key="ListItemAllyAvgBattles">味方平均戦闘数</system:String>
+    <system:String x:Key="ListItemEnemyAvgAccountWinrate">敵平均アカウント勝率</system:String>
+    <system:String x:Key="ListItemEnemyAvgWeightedWinrate">敵平均加重勝率</system:String>
+    <system:String x:Key="ListItemEnemyAvgBattles">敵平均戦闘数</system:String>
+    <system:String x:Key="ListItemAllyTomatoList">味方トマト一覧</system:String>
+    <system:String x:Key="ListItemAllyUnicumList">味方ユニカム一覧</system:String>
+    <system:String x:Key="ListItemAllyHiddenList">味方非公開一覧</system:String>
+    <system:String x:Key="ListItemAllyPositiveWatchList">味方注目リスト（ポジティブ）</system:String>
+    <system:String x:Key="ListItemAllyNegativeWatchList">味方注目リスト（ネガティブ）</system:String>
+    <system:String x:Key="ListItemAllyCheaterWatchList">味方注目リスト（チーター / Bot）</system:String>
+    <system:String x:Key="ListItemAllyTomatoCount">味方トマト数</system:String>
+    <system:String x:Key="ListItemAllyUnicumCount">味方ユニカム数</system:String>
+    <system:String x:Key="ListItemAllyHiddenCount">味方非公開数</system:String>
+    <system:String x:Key="ListItemAllyPositiveWatchCount">味方注目数（ポジティブ）</system:String>
+    <system:String x:Key="ListItemAllyNegativeWatchCount">味方注目数（ネガティブ）</system:String>
+    <system:String x:Key="ListItemAllyCheaterWatchCount">味方注目数（チーター / Bot）</system:String>
+    <system:String x:Key="ListItemEnemyTomatoList">敵トマト一覧</system:String>
+    <system:String x:Key="ListItemEnemyUnicumList">敵ユニカム一覧</system:String>
+    <system:String x:Key="ListItemEnemyHiddenList">敵非公開一覧</system:String>
+    <system:String x:Key="ListItemEnemyPositiveWatchList">敵注目リスト（ポジティブ）</system:String>
+    <system:String x:Key="ListItemEnemyNegativeWatchList">敵注目リスト（ネガティブ）</system:String>
+    <system:String x:Key="ListItemEnemyCheaterWatchList">敵注目リスト（チーター / Bot）</system:String>
+    <system:String x:Key="ListItemEnemyTomatoCount">敵トマト数</system:String>
+    <system:String x:Key="ListItemEnemyUnicumCount">敵ユニカム数</system:String>
+    <system:String x:Key="ListItemEnemyHiddenCount">敵非公開数</system:String>
+    <system:String x:Key="ListItemEnemyPositiveWatchCount">敵注目数（ポジティブ）</system:String>
+    <system:String x:Key="ListItemEnemyNegativeWatchCount">敵注目数（ネガティブ）</system:String>
+    <system:String x:Key="ListItemEnemyCheaterWatchCount">敵注目数（チーター / Bot）</system:String>
+    <system:String x:Key="ListItemTomatoWinrateThreshold">トマト勝率閾値</system:String>
+    <system:String x:Key="ListItemUnicumWinrateThreshold">ユニカム勝率閾値</system:String>
+
+    <system:String x:Key="ListItemPlayerName">プレイヤー名</system:String>
+    <system:String x:Key="ListItemClanTag">クランタグ</system:String>
+    <system:String x:Key="ListItemShipName">艦艇名</system:String>
+    <system:String x:Key="ListItemAccountBattles">アカウント戦闘数</system:String>
+    <system:String x:Key="ListItemShipBattles">艦艇戦闘数</system:String>
+    <system:String x:Key="ListItemAccountWinrate">アカウント勝率</system:String>
+    <system:String x:Key="ListItemWeightedWinrate">加重勝率</system:String>
+    <system:String x:Key="ListItemShipWinrate">艦艇勝率</system:String>
+    <system:String x:Key="ListItemShipAvgDmg">艦艇平均ダメージ</system:String>
+
+    <system:String x:Key="ChkBoxSecondaryServerEnabled">敵プレイヤーが異なるサーバーから参加（クロスサーバーCW専用）</system:String>
+    <system:String x:Key="ChkBoxCheckForUpdatesOnStartup">起動時にアップデートを確認</system:String>
+    <system:String x:Key="ChkBoxIncludePlayerNamesOnlyIfDuplicateShipExists">重複艦艇が存在する場合のみプレイヤー名を含める</system:String>
+    <system:String x:Key="ChkBoxExcludeYourself">自分を除外</system:String>
+    <system:String x:Key="ChkBoxUnlockOutputTextbox">出力テキストボックスをロック解除</system:String>
+    <system:String x:Key="ChkBoxAutoCopyOutputTextToClipboard">出力テキストを自動的にクリップボードにコピー</system:String>
+    <system:String x:Key="ChkBoxUseOldAPI">旧APIを使用</system:String>
+    <system:String x:Key="ChkBoxEnableYuyukoAPIPush">Yuyuko APIプッシュサービスを有効にする（ベータ版）</system:String>
+    <system:String x:Key="ChkBoxEnableDebugMode">デバッグモードを有効にする</system:String>
+
+    <system:String x:Key="NotificationMessageNewPlayersRevealed">{0}人の新しいプレイヤーを検出</system:String>
+    <system:String x:Key="NotificationMessageRetrivingData">サーバーからデータを取得中です。お待ちください…</system:String>
+    <system:String x:Key="NotificationMessageDataRetrieved">データが正常に取得されました。</system:String>
+    <system:String x:Key="NotificationMessageFileError">開かれたファイルは有効なtempArenaInfo.jsonまたは.wowsreplayファイルではありません。</system:String>
+    <system:String x:Key="NotificationMessageServerAutoDetectionFailed">ゲームサーバーの自動検出に失敗しました。設定画面で手動でゲームサーバーを選択してください。</system:String>
+    <system:String x:Key="NotificationMessageConnectionError">APIへの接続に失敗しました。ネットワーク接続を確認するか、後でもう一度お試しください。</system:String>
+    <system:String x:Key="NotificationMessageJsonError">取得したデータの形式が正しくありません。ネットワーク接続を確認するか、後でもう一度お試しください。</system:String>
+    <system:String x:Key="NotificationMessageOtherError">エラーが発生しました。詳細は /Log/ フォルダ内のログファイルをご覧ください。</system:String>
+    <system:String xml:space="preserve" x:Key="NotificationMessageRetrying">再試行中。試行 </system:String>
+    <system:String x:Key="NotificationMessageAttempt">回目。</system:String>
+    <system:String x:Key="NotificationMessageMaximumAttemptsReached">最大試行回数に達しました。中止します。</system:String>
+    <system:String xml:space="preserve" x:Key="NotificationMessageScreenshotIsSavedTo">スクリーンショットを保存しました: </system:String>
+    <system:String x:Key="NotificationMessagePeriod">.</system:String>
+    <system:String x:Key="NotificationMessageSoftwareUpdateDownloading">アプリケーションのアップデートをダウンロード中です。お待ちください…</system:String>
+    <system:String x:Key="NotificationMessageShiplistUpdateDownloading">艦艇リストのアップデートをダウンロード中です。お待ちください…</system:String>
+    <system:String x:Key="NotificationMessageSoftwareUpdateComplete">アップデートが完了しました。アプリケーションを閉じます。再起動して最新バージョンをご使用ください。</system:String>
+    <system:String x:Key="NotificationMessageShiplistUpdateComplete">艦艇リストのアップデートが完了しました。</system:String>
+    <system:String x:Key="NotificationMessageUpdateConnectionError">アップデートサーバーへの接続に失敗しました。ネットワーク接続を確認するか、後でもう一度お試しください。</system:String>
+    <system:String x:Key="NotificationMessageUpdateFileHashError">アップデートサーバーからダウンロードしたファイルが破損しています。ネットワーク接続を確認するか、後でもう一度お試しください。</system:String>
+
+    <system:String x:Key="MsgBoxError">エラー</system:String>
+    <system:String x:Key="MsgBoxInputError">入力値が正しくありません。</system:String>
+    <system:String x:Key="MsgBoxGamePathErrorConfirmation">選択されたフォルダにWorldOfWarships.exeが検出されませんでした。ゲームパス設定が正しくない可能性があります。（例：ゲームのルートフォルダではなく\replayサブフォルダを選択しました。）それでも使用しますか？</system:String>
+    <system:String x:Key="MsgBoxConfirmation">確認</system:String>
+    <system:String x:Key="MsgBoxOutputTextboxUnlockConfirmation">私はゲーム内の公開チャンネルで、World of WarshipsのEULAおよび/またはゲーム・クランルールに違反するメッセージを送信しないことを誓います。</system:String>
+    <system:String x:Key="MsgBoxUpdate">アップデート</system:String>
+    <system:String x:Key="MsgBoxSoftwareUpdateFound">アプリケーションのアップデートが見つかりました。</system:String>
+    <system:String x:Key="MsgBoxShiplistUpdateFound">艦艇リストのアップデートが見つかりました。</system:String>
+    <system:String x:Key="MsgBoxUpdatesNotFound">アプリケーションと艦艇リストは最新です。</system:String>
+    <system:String xml:space="preserve" x:Key="MsgBoxCurrentVersion">現在のバージョン: </system:String>
+    <system:String xml:space="preserve" x:Key="MsgBoxLatestVersion">最新バージョン: </system:String>
+    <system:String x:Key="MsgBoxUpdateComfirm">アップデートしますか？</system:String>
+    <system:String x:Key="MsgBoxSoftwareUpdateComplete">アップデートが完了しました。アプリケーションを閉じます。再起動して最新バージョンをご使用ください。</system:String>
+    <system:String x:Key="MsgBoxShiplistUpdateComplete">艦艇リストのアップデートが完了しました。</system:String>
+
+    <system:String x:Key="ContextMenuCopyPlayerStatistics">プレイヤー統計をコピー</system:String>
+    <system:String x:Key="ContextMenuCheckOnWoWSOfficialSite">公式サイトで詳細を確認</system:String>
+    <system:String x:Key="ContextMenuCheckOnWoWSNumbers">WoWS Numbersで詳細を確認</system:String>
+    <system:String x:Key="ContextMenuCheckOnProships">Proships.suで詳細を確認</system:String>
+    <system:String x:Key="ContextMenuAddToWatchListPositive">注目リストに追加（ポジティブ）</system:String>
+    <system:String x:Key="ContextMenuAddToWatchListNegative">注目リストに追加（ネガティブ）</system:String>
+    <system:String x:Key="ContextMenuAddToWatchListCheater">注目リストに追加（チーター / Bot）</system:String>
+    <system:String x:Key="ContextMenuRemoveFromWatchList">注目リストから削除</system:String>
+
+    <system:String x:Key="StringNone">なし</system:String>
+    <system:String x:Key="StringUnknownShip">不明な艦艇</system:String>
+
+</ResourceDictionary>

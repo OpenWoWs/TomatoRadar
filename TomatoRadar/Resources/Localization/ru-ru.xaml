@@ -1,0 +1,418 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <system:String x:Key="WindowTitleConfig">Настройки</system:String>
+    <system:String x:Key="WindowTitleLanguagePriority">Приоритет языка названий кораблей</system:String>
+    <system:String x:Key="WindowTitleTomatoRadar">Tomato Radar</system:String>
+
+    <system:String x:Key="DataGridHeaderPlayer">Игрок</system:String>
+    <system:String x:Key="DataGridHeaderStatisticsAccount">Аккаунт</system:String>
+    <system:String x:Key="DataGridHeaderStatisticsWeighted">Взвешенный</system:String>
+    <system:String x:Key="DataGridHeaderStatisticsShip">Корабль</system:String>
+    <system:String x:Key="DataGridHeaderTag">Метка</system:String>
+    <system:String x:Key="DataGridHeaderServer">Сервер</system:String>
+    <system:String x:Key="DataGridHeaderID">ID</system:String>
+    <system:String x:Key="DataGridHeaderName">Имя</system:String>
+    <system:String x:Key="DataGridHeaderTime">Время</system:String>
+    <system:String x:Key="DataGridHeaderMessage">Сообщение</system:String>
+    <system:String x:Key="DataGridToolTipAccount">Аккаунт</system:String>
+    <system:String x:Key="DataGridToolTipWeighted">Взвешенный</system:String>
+    <system:String x:Key="DataGridToolTipShip">Корабль</system:String>
+    <system:String x:Key="DataGridToolTipBattles">Бои</system:String>
+    <system:String x:Key="DataGridToolTipWinrate">Процент побед</system:String>
+    <system:String x:Key="DataGridToolTipAvgExp">Средний опыт</system:String>
+    <system:String x:Key="DataGridToolTipAvgDmg">Средний урон</system:String>
+    <system:String x:Key="DataGridToolTipSolo">Соло</system:String>
+    <system:String x:Key="DataGridToolTipDiv2">Див 2</system:String>
+    <system:String x:Key="DataGridToolTipDiv3">Див 3</system:String>
+
+    <system:String x:Key="BtnSave">Сохранить</system:String>
+    <system:String x:Key="BtnCancel">Отмена</system:String>
+    <system:String x:Key="BtnDefault">По умолчанию</system:String>
+    <system:String x:Key="BtnInsert">Вставить</system:String>
+    <system:String x:Key="BtnBrowse">Обзор</system:String>
+    <TextBlock x:Key="BtnCheckForUpdates" TextAlignment="Center">Проверить<LineBreak/>обновления</TextBlock>
+    <system:String x:Key="BtnConfigure">Настроить</system:String>
+    <system:String x:Key="BtnRefresh">Обновить</system:String>
+    <system:String x:Key="BtnOpen">Открыть реплей</system:String>
+    <system:String x:Key="BtnConfig">Настройки</system:String>
+    <system:String x:Key="BtnScreenshot">Скриншот</system:String>
+
+    <system:String x:Key="ComboBoxItemLanguageAuto">Авто</system:String>
+    <system:String x:Key="ComboBoxItemSortByShipTypeAndShipTierAndWinrateDescending">Тип/Уровень/Победы ↓</system:String>
+    <system:String x:Key="ComboBoxItemSortByShipTypeAndWinrateDescending">Тип/Победы ↓</system:String>
+    <system:String x:Key="ComboBoxItemSortByShipTierAndShipTypeAndWinrateDescending">Уровень/Тип/Победы ↓</system:String>
+    <system:String x:Key="ComboBoxItemSortByShipTierAndWinrateDescending">Уровень/Победы ↓</system:String>
+    <system:String x:Key="ComboBoxItemSortByWinrateDescending">Победы ↓</system:String>
+    <system:String x:Key="ComboBoxItemSortByWinrateAscending">Победы ↑</system:String>
+    <system:String x:Key="ComboBoxItemSortByBattlesDescending">Бои ↓</system:String>
+    <system:String x:Key="ComboBoxItemSortByBattlesAscending">Бои ↑</system:String>
+    <system:String x:Key="ComboBoxItemMirroredDisplayDisabled">Обычный</system:String>
+    <system:String x:Key="ComboBoxItemMirroredDisplayEnabled">Зеркальный</system:String>
+    <system:String x:Key="ComboBoxItemPlayerNamesVisible">Видимый</system:String>
+    <system:String x:Key="ComboBoxItemPlayerNamesHidden">Скрытый</system:String>
+    <system:String x:Key="ComboBoxItemChartTypeWinrateAscending">Линия: Победы ↑</system:String>
+    <system:String x:Key="ComboBoxItemChartTypeWinrateDescending">Линия: Победы ↓</system:String>
+    <system:String x:Key="ComboBoxItemChartTypeShipTypeAndWinrateDescending">Столбцы: Тип/Победы ↓</system:String>
+    <system:String x:Key="ComboBoxItemChartTypeShipTierAndWinrateDescending">Столбцы: Уровень/Победы ↓</system:String>
+    <system:String x:Key="ComboBoxItemChartTypeShipTypeAndShipTierAndWinrateDescending">Столбцы: Тип/Уровень/Победы ↓</system:String>
+    <system:String x:Key="ComboBoxItemChartTypeShipTierAndShipTypeAndWinrateDescending">Столбцы: Уровень/Тип/Победы ↓</system:String>
+    <system:String x:Key="ComboBoxItemServerAuto">Авто</system:String>
+    <system:String x:Key="ComboBoxItemServerRU">RU</system:String>
+    <system:String x:Key="ComboBoxItemServerEU">EU</system:String>
+    <system:String x:Key="ComboBoxItemServerNA">NA</system:String>
+    <system:String x:Key="ComboBoxItemServerASIA">ASIA</system:String>
+    <system:String x:Key="ComboBoxItemServerCN">CN</system:String>
+    <system:String x:Key="ComboBoxItemAccountWinrate">Аккаунт</system:String>
+    <system:String x:Key="ComboBoxItemWeightedWinrate">Взвешенный</system:String>
+    <system:String x:Key="ComboBoxItemNoColor">Без цвета</system:String>
+    <system:String x:Key="ComboBoxItem4Colors">4 цвета</system:String>
+    <system:String x:Key="ComboBoxItem8Colors">8 цветов</system:String>
+    <system:String x:Key="ComboBoxItemRainbow">Радуга</system:String>
+    <system:String x:Key="ComboBoxItemVisible">Видимый</system:String>
+    <system:String x:Key="ComboBoxItemFaded">Блёклый</system:String>
+    <system:String x:Key="ComboBoxItemCollapsed">Свёрнутый</system:String>
+    <system:String x:Key="ComboBoxItemAPITypeVortex">Vortex API</system:String>
+    <system:String x:Key="ComboBoxItemAPITypeWGPublic">WG Public API</system:String>
+    <system:String x:Key="ComboBoxItemAPITypeWGPublicWithYuyukoProxy">WG Public API с Yuyuko Proxy</system:String>
+
+    <system:String x:Key="ComboBoxItemAPITypeLestaPublic">Lesta Public API</system:String>
+
+    <system:String x:Key="LabelAllies">Союзники</system:String>
+    <system:String x:Key="LabelEnemies">Противники</system:String>
+    <system:String x:Key="LabelAverageData">Среднее</system:String>
+    <system:String x:Key="LabelAverageAccountWinrate">Аккаунт</system:String>
+    <system:String x:Key="LabelAverageWeightedWinrate">Взвешенный</system:String>
+    <system:String x:Key="LabelAverageBattleCount">Бои</system:String>
+    <system:String x:Key="LabelGamePathIsSet">Путь к игре установлен</system:String>
+    <system:String x:Key="LabelGamePathIsNotSet">Путь к игре не установлен</system:String>
+    <system:String x:Key="LabelChartType">Тип графика:</system:String>
+    <system:String x:Key="LabelPlayerListSortBy">Сортировка игроков:</system:String>
+    <system:String x:Key="LabelDisplayStyle">Стиль отображения:</system:String>
+    <system:String x:Key="LabelPlayerNames">Имена игроков:</system:String>
+    <system:String x:Key="LabelServer">Сервер</system:String>
+    <system:String x:Key="LabelGamePath">Путь к игре</system:String>
+    <system:String x:Key="LabelShipNameLanguage">Язык названий кораблей</system:String>
+    <TextBlock x:Key="LabelMaximumRetryAttemptsOnError" TextAlignment="Right">Макс. попыток<LineBreak/>при ошибке</TextBlock>
+    <system:String x:Key="LabelSoftwareVersion">Версия приложения</system:String>
+    <system:String x:Key="LabelShipListVersion">Версия списка кораблей</system:String>
+    <system:String x:Key="LabelWinrateRangeSettings">Настройки диапазона побед</system:String>
+    <system:String x:Key="LabelWinrateType">Используемый тип побед</system:String>
+    <system:String x:Key="LabelColorStyle">Цветовая схема</system:String>
+    <system:String x:Key="LabelIcon">Значок</system:String>
+    <system:String x:Key="LabelTomatoIcon">Томат</system:String>
+    <system:String x:Key="LabelUnicumIcon">Уникум</system:String>
+    <system:String x:Key="LabelHiddenIcon">Скрыт / Недоступен</system:String>
+    <system:String x:Key="LabelWatchIcon">в списке наблюдения</system:String>
+    <system:String x:Key="LabelColumnVisibility">Видимость колонок</system:String>
+    <system:String x:Key="LabelColumnVisibilityAccount">Аккаунт</system:String>
+    <system:String x:Key="LabelColumnVisibilityWeighted">Взвешенный</system:String>
+    <system:String x:Key="LabelColumnVisibilityShip">Корабль</system:String>
+    <system:String x:Key="LabelColumnVisibilityAccountAvgExp">Средний опыт (аккаунт)</system:String>
+    <system:String x:Key="LabelColumnVisibilityShipAvgExp">Средний опыт (корабль)</system:String>
+    <system:String x:Key="LabelColumnVisibilityShipAvgDmg">Средний урон (корабль)</system:String>
+    <system:String x:Key="LabelColumnVisibilityTag">Метка</system:String>
+    <system:String x:Key="LabelFontSize">Размер шрифта</system:String>
+    <system:String x:Key="LabelFontSizePlayerColumn">Колонка игрока</system:String>
+    <system:String x:Key="LabelFontSizeStatisticsColumn">Колонка статистики</system:String>
+    <system:String x:Key="LabelFontSizeDetailedStatistics">Подробная статистика</system:String>
+    <system:String x:Key="LabelFontSizeOutputText">Вывод текста</system:String>
+    <system:String x:Key="LabelOutputTextTemplateGeneralStatistics">Шаблон вывода (Общая статистика)</system:String>
+    <system:String x:Key="LabelOutputTextTemplateParticularPlayerStatistics">Шаблон вывода (Статистика игрока)</system:String>
+    <system:String x:Key="LabelInsertTemplateTag">Вставить метку</system:String>
+    <system:String x:Key="LabelTemplateTag">Метка:</system:String>
+    <system:String x:Key="LabelTagDefinition">Определение меток</system:String>
+    <system:String x:Key="LabelTomato">Томат =</system:String>
+    <system:String x:Key="LabelUnicum">Уникум =</system:String>
+    <system:String x:Key="LabelWinrate">Процент побед</system:String>
+    <system:String x:Key="LabelBattles">Бои</system:String>
+    <system:String x:Key="LabelAnd">И</system:String>
+    <system:String x:Key="LabelBelow">Ниже</system:String>
+    <system:String x:Key="LabelAbove">Выше</system:String>
+    <system:String x:Key="LabelDelimiter">Разделитель между названиями (По умолчанию: пробел)</system:String>
+    <system:String x:Key="LabelWeightedWinrate">Взвешенный процент побед</system:String>
+    <system:String xml:space="preserve" x:Key="LabelWeightedWinrateStep1">Шаг 1: </system:String>
+    <system:String x:Key="LabelWeightedWinrateStep1Line1">Расчёт взвешенного процента побед по</system:String>
+    <system:String x:Key="LabelWeightedWinrateStep1Line2">соло, див2 и див3 процентам побед.</system:String>
+    <system:String x:Key="LabelWeightedWinrateWeightMultiplier">Множитель веса</system:String>
+    <system:String x:Key="LabelWeightedWinrateAccountSoloWeightMultiplier">Соло</system:String>
+    <system:String x:Key="LabelWeightedWinrateAccountDiv2WeightMultiplier">Див 2</system:String>
+    <system:String x:Key="LabelWeightedWinrateAccountDiv3WeightMultiplier">Див 3</system:String>
+    <system:String x:Key="LabelWeightedWinratePieChartSolo">Соло</system:String>
+    <system:String x:Key="LabelWeightedWinratePieChartDiv2">Див 2</system:String>
+    <system:String x:Key="LabelWeightedWinratePieChartDiv3">Див 3</system:String>
+    <system:String x:Key="LabelWeightedWinratePieChartShip">Корабль</system:String>
+    <system:String xml:space="preserve" x:Key="LabelWeightedWinrateStep2">Шаг 2: </system:String>
+    <system:String x:Key="LabelWeightedWinrateStep2Line1">Расчёт взвешенного процента побед по</system:String>
+    <system:String x:Key="LabelWeightedWinrateStep2Line2">взвешенному проценту побед и проценту побед на корабле.</system:String>
+    <system:String x:Key="LabelWeightedWinrateShipMaxWeight">Макс. вес побед на корабле</system:String>
+    <system:String x:Key="LabelWeightedWinrateShipBattlesAtMaxWeight">Боёв на корабле при макс. весе</system:String>
+    <system:String x:Key="LabelWeightedWinratePieChartDescriptionLine1">Вклад каждого типа боёв во взвешенный процент побед</system:String>
+    <system:String x:Key="LabelWeightedWinratePieChartDescriptionLine2">(При боях на корабле ≥ Боёв на корабле при макс. весе)</system:String>
+    <system:String x:Key="LabelAboutLine1">Это приложение полностью бесплатно и имеет открытый исходный код под лицензией MIT.</system:String>
+    <system:String xml:space="preserve" x:Key="LabelAboutLine2Part1">Сайт: </system:String>
+    <system:String xml:space="preserve" x:Key="LabelAboutLine2Part2">  QQ группа: 1012624096 / 272868560</system:String>
+    <system:String x:Key="LabelWatchList">Список наблюдения</system:String>
+    <system:String x:Key="LabelPositive">Положительный</system:String>
+    <system:String x:Key="LabelNegative">Отрицательный</system:String>
+    <system:String x:Key="LabelCheater">Читер / Бот</system:String>
+    <system:String x:Key="LabelAPIType">Тип API</system:String>
+    <system:String x:Key="LabelAPITypeDefault">EU / NA / ASIA</system:String>
+    <system:String x:Key="LabelAPITypeRU">RU</system:String>
+    <system:String x:Key="LabelAPITypeCN">CN</system:String>
+
+    <system:String x:Key="TabHeaderGeneral">Общие</system:String>
+    <system:String x:Key="TabHeaderAppearance">Внешний вид</system:String>
+    <system:String x:Key="TabHeaderWinrateAndTag">Победы и метки</system:String>
+    <system:String x:Key="TabHeaderTextOutput">Вывод текста</system:String>
+    <system:String x:Key="TabHeaderTextOutputGeneralStatistics">(Общая статистика)</system:String>
+    <system:String x:Key="TabHeaderTextOutputParticularPlayerStatistics">(Статистика игрока)</system:String>
+    <system:String x:Key="TabHeaderWatchList">Список наблюдения</system:String>
+    <system:String x:Key="TabHeaderAdvanced">Дополнительно</system:String>
+
+    <system:String x:Key="ToolTipResetToDefault">Сбросить по умолчанию</system:String>
+    <ToolTip x:Key="ToolTipGamePath">
+        <TextBlock>
+            Рекомендуется использовать выпадающую кнопку справа для выбора автоматически определённого пути к игре.
+            <LineBreak/>
+            При ручном выборе укажите папку игры (где находится WorldOfWarships.exe), а не папку реплеев.
+        </TextBlock>
+    </ToolTip>
+
+    <ToolTip x:Key="ToolTipMaximumRetryAttemptsOnError">
+        <TextBlock>
+            При возникновении ошибки при получении данных приложение будет повторять попытку до указанного количества раз.
+            <LineBreak/>
+            Установите 0, чтобы отключить повторные попытки.
+        </TextBlock>
+    </ToolTip>
+
+    <ToolTip x:Key="ToolTipWinrateTypeUsed">
+        <TextBlock>
+            Выбранный тип процента побед будет отображаться на графике и использоваться для назначения меток.
+        </TextBlock>
+    </ToolTip>
+
+    <ToolTip x:Key="ToolTipWeightedWinrate">
+        <TextBlock>
+            Взвешенный процент побед — это оценка потенциальной эффективности игрока на конкретном корабле с учётом игры в дивизионе.
+        </TextBlock>
+    </ToolTip>
+
+    <ToolTip x:Key="ToolTipWeightedWinrateStep1">
+        <TextBlock>
+            Вес соло аккаунта = Соло боёв аккаунта * Множитель веса соло
+            <LineBreak/>
+            Вес див2 аккаунта = Див2 боёв аккаунта * Множитель веса див2
+            <LineBreak/>
+            Вес див3 аккаунта = Див3 боёв аккаунта * Множитель веса див3
+            <LineBreak/>
+            Взвешенный процент побед = (Соло побед * Вес соло + Див2 побед * Вес див2 + Див3 побед * Вес див3) / (Вес соло + Вес див2 + Вес див3)
+        </TextBlock>
+    </ToolTip>
+
+    <ToolTip x:Key="ToolTipWeightedWinrateWeightMultiplier">
+        <TextBlock>
+            Множители веса корректируют вес каждого типа дивизиона вместе с количеством боёв каждого типа.
+            <LineBreak/>
+            Если все множители равны, взвешенный процент побед будет равен проценту побед аккаунта.
+        </TextBlock>
+    </ToolTip>
+
+    <ToolTip x:Key="ToolTipWeightedWinrateStep2">
+        <TextBlock>
+            Вес корабля = Макс. вес побед на корабле / Боёв на корабле&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;(Боёв на корабле ＜ Боёв при макс. весе)
+            <LineBreak/>
+            &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Макс. вес побед на корабле&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;(Боёв на корабле ≥ Боёв при макс. весе)
+            <LineBreak/>
+            Вес аккаунта = 1 - Вес корабля
+            <LineBreak/>
+            Взвешенный процент побед = Взвешенный процент побед аккаунта * Вес аккаунта + Побед на корабле * Вес корабля
+        </TextBlock>
+    </ToolTip>
+
+    <ToolTip x:Key="ToolTipColorStyle">
+        <TextBlock>
+            Без цвета:
+            <LineBreak/>
+            <Run Foreground="#000000" Background="#FFFFFF">Любой процент побед</Run>
+            <LineBreak/>
+            <LineBreak/>
+            4 цвета:
+            <LineBreak/>
+            <Run Foreground="#FFFFFF" Background="#FE0E00">≤47%</Run>&#160;
+            <Run Foreground="#FFFFFF" Background="#FFC71F">47%-52%</Run>&#160;
+            <Run Foreground="#FFFFFF" Background="#318000">52%-60%</Run>&#160;
+            <Run Foreground="#FFFFFF" Background="#D042F3">＞60%</Run>
+            <LineBreak/>
+            <LineBreak/>
+            8 цветов (WoWS Numbers):
+            <LineBreak/>
+            <Run Foreground="#FFFFFF" Background="#FE0E00">≤47%</Run>&#160;
+            <Run Foreground="#FFFFFF" Background="#FE7903">47%-49%</Run>&#160;
+            <Run Foreground="#FFFFFF" Background="#FFC71F">49%-52%</Run>&#160;
+            <Run Foreground="#FFFFFF" Background="#44B300">52%-54%</Run>&#160;
+            <Run Foreground="#FFFFFF" Background="#318000">54%-56%</Run>&#160;
+            <Run Foreground="#FFFFFF" Background="#02C9B3">56%-60%</Run>&#160;
+            <Run Foreground="#FFFFFF" Background="#D042F3">60%-65%</Run>&#160;
+            <Run Foreground="#FFFFFF" Background="#A00DC5">＞65%</Run>
+            <LineBreak/>
+            <LineBreak/>
+            Радуга (бесконечное количество цветов):
+            <LineBreak/>
+            Плавный переход от <Run Foreground="#FFFFFF" Background="#FE0E00">≤47%</Run> до <Run Foreground="#FFFFFF" Background="#CC00FF">＞65%</Run>
+        </TextBlock>
+    </ToolTip>
+
+    <ToolTip x:Key="ToolTipGeneralStatistics">
+        <TextBlock>
+            Этот шаблон управляет текстом, генерируемым в поле вывода (правый нижний угол) при начале боя или открытии файла реплея.
+        </TextBlock>
+    </ToolTip>
+
+    <ToolTip x:Key="ToolTipParticularPlayerStatistics">
+        <TextBlock>
+            Этот шаблон управляет текстом, который вы получите при копировании статистики конкретного игрока (правый клик по игроку → Копировать статистику игрока).
+        </TextBlock>
+    </ToolTip>
+
+    <ToolTip x:Key="ToolTipWatchList">
+        <TextBlock>
+            Здесь показаны все игроки из вашего списка наблюдения (правый клик по игроку → Добавить в список наблюдения).
+            <LineBreak/>
+            Правый клик по игроку, чтобы посмотреть его статистику на сайтах или удалить из списка наблюдения.
+            <LineBreak/>
+            Список наблюдения сохраняется в файле WatchList.json в папке приложения.
+        </TextBlock>
+    </ToolTip>
+
+    <ToolTip x:Key="ToolTipAPIType">
+        <TextBlock>
+            Vortex API: Поддерживаются все новые функции, все серверы.
+            <LineBreak/>
+            WG Public API: Некоторые новые функции могут не поддерживаться. Серверы RU и CN не поддерживаются. Выбор будет проигнорирован, и на этих серверах будет использоваться Vortex API.
+            <LineBreak/>
+            WG Public API с Yuyuko Proxy: То же, что и WG Public API, но может быть более стабильным в определённых сетевых условиях в Китае.
+            <LineBreak/>
+            <LineBreak/>
+            Рекомендуется выбирать другие варианты только при постоянных ошибках с Vortex API.
+        </TextBlock>
+    </ToolTip>
+
+    <ToolTip x:Key="ToolTipEnableYuyukoAPIPush">
+        <TextBlock>
+            Отправка данных боя на другие устройства через Yuyuko API для удобного просмотра. (Клиент в разработке)
+            <LineBreak/>
+            При выборе этой опции основные данные каждого боя (список имён игроков, UID, кланов и ID кораблей и т.д.) будут отправлены на сервер Yuyuko.
+            <LineBreak/>
+            Личная информация не собирается.
+        </TextBlock>
+    </ToolTip>
+
+    <ToolTip x:Key="ToolTipDebugMode">
+        <TextBlock>
+            Создавать подробные логи для отладки.
+        </TextBlock>
+    </ToolTip>
+
+    <system:String x:Key="ListItemAllyAvgAccountWinrate">Средний процент побед союзников</system:String>
+    <system:String x:Key="ListItemAllyAvgWeightedWinrate">Средний взвешенный процент побед союзников</system:String>
+    <system:String x:Key="ListItemAllyAvgBattles">Среднее количество боёв союзников</system:String>
+    <system:String x:Key="ListItemEnemyAvgAccountWinrate">Средний процент побед противников</system:String>
+    <system:String x:Key="ListItemEnemyAvgWeightedWinrate">Средний взвешенный процент побед противников</system:String>
+    <system:String x:Key="ListItemEnemyAvgBattles">Среднее количество боёв противников</system:String>
+    <system:String x:Key="ListItemAllyTomatoList">Список томатов-союзников</system:String>
+    <system:String x:Key="ListItemAllyUnicumList">Список уникмов-союзников</system:String>
+    <system:String x:Key="ListItemAllyHiddenList">Список скрытых союзников</system:String>
+    <system:String x:Key="ListItemAllyPositiveWatchList">Список наблюдения (положительный) — союзники</system:String>
+    <system:String x:Key="ListItemAllyNegativeWatchList">Список наблюдения (отрицательный) — союзники</system:String>
+    <system:String x:Key="ListItemAllyCheaterWatchList">Список читеров/ботов — союзники</system:String>
+    <system:String x:Key="ListItemAllyTomatoCount">Количество томатов-союзников</system:String>
+    <system:String x:Key="ListItemAllyUnicumCount">Количество уникмов-союзников</system:String>
+    <system:String x:Key="ListItemAllyHiddenCount">Количество скрытых союзников</system:String>
+    <system:String x:Key="ListItemAllyPositiveWatchCount">Количество в положительном списке — союзники</system:String>
+    <system:String x:Key="ListItemAllyNegativeWatchCount">Количество в отрицательном списке — союзники</system:String>
+    <system:String x:Key="ListItemAllyCheaterWatchCount">Количество читеров/ботов — союзники</system:String>
+    <system:String x:Key="ListItemEnemyTomatoList">Список томатов-противников</system:String>
+    <system:String x:Key="ListItemEnemyUnicumList">Список уникмов-противников</system:String>
+    <system:String x:Key="ListItemEnemyHiddenList">Список скрытых противников</system:String>
+    <system:String x:Key="ListItemEnemyPositiveWatchList">Список наблюдения (положительный) — противники</system:String>
+    <system:String x:Key="ListItemEnemyNegativeWatchList">Список наблюдения (отрицательный) — противники</system:String>
+    <system:String x:Key="ListItemEnemyCheaterWatchList">Список читеров/ботов — противники</system:String>
+    <system:String x:Key="ListItemEnemyTomatoCount">Количество томатов-противников</system:String>
+    <system:String x:Key="ListItemEnemyUnicumCount">Количество уникмов-противников</system:String>
+    <system:String x:Key="ListItemEnemyHiddenCount">Количество скрытых противников</system:String>
+    <system:String x:Key="ListItemEnemyPositiveWatchCount">Количество в положительном списке — противники</system:String>
+    <system:String x:Key="ListItemEnemyNegativeWatchCount">Количество в отрицательном списке — противники</system:String>
+    <system:String x:Key="ListItemEnemyCheaterWatchCount">Количество читеров/ботов — противники</system:String>
+    <system:String x:Key="ListItemTomatoWinrateThreshold">Порог процента побед томата</system:String>
+    <system:String x:Key="ListItemUnicumWinrateThreshold">Порог процента побед уникма</system:String>
+
+    <system:String x:Key="ListItemPlayerName">Имя игрока</system:String>
+    <system:String x:Key="ListItemClanTag">Тег клана</system:String>
+    <system:String x:Key="ListItemShipName">Название корабля</system:String>
+    <system:String x:Key="ListItemAccountBattles">Бои на аккаунте</system:String>
+    <system:String x:Key="ListItemShipBattles">Бои на корабле</system:String>
+    <system:String x:Key="ListItemAccountWinrate">Процент побед аккаунта</system:String>
+    <system:String x:Key="ListItemWeightedWinrate">Взвешенный процент побед</system:String>
+    <system:String x:Key="ListItemShipWinrate">Процент побед на корабле</system:String>
+    <system:String x:Key="ListItemShipAvgDmg">Средний урон на корабле</system:String>
+
+    <system:String x:Key="ChkBoxSecondaryServerEnabled">Противники с другого сервера (только для межсерверного КБ)</system:String>
+    <system:String x:Key="ChkBoxCheckForUpdatesOnStartup">Проверять обновления при запуске</system:String>
+    <system:String x:Key="ChkBoxIncludePlayerNamesOnlyIfDuplicateShipExists">Имена игроков только при дубликатах кораблей</system:String>
+    <system:String x:Key="ChkBoxExcludeYourself">Исключить себя</system:String>
+    <system:String x:Key="ChkBoxUnlockOutputTextbox">Разблокировать поле вывода</system:String>
+    <system:String x:Key="ChkBoxAutoCopyOutputTextToClipboard">Автокопирование текста в буфер</system:String>
+    <system:String x:Key="ChkBoxUseOldAPI">Использовать старый API</system:String>
+    <system:String x:Key="ChkBoxEnableYuyukoAPIPush">Включить Yuyuko API Push (Бета)</system:String>
+    <system:String x:Key="ChkBoxEnableDebugMode">Включить режим отладки</system:String>
+
+    <system:String x:Key="NotificationMessageNewPlayersRevealed">Обнаружено новых игроков: {0}</system:String>
+    <system:String x:Key="NotificationMessageRetrivingData">Получение данных с сервера, пожалуйста, подождите...</system:String>
+    <system:String x:Key="NotificationMessageDataRetrieved">Данные успешно получены.</system:String>
+    <system:String x:Key="NotificationMessageFileError">Открытый файл не является действительным tempArenaInfo.json или .wowsreplay.</system:String>
+    <system:String x:Key="NotificationMessageServerAutoDetectionFailed">Автоопределение сервера не удалось. Пожалуйста, выберите сервер вручную в окне настроек.</system:String>
+    <system:String x:Key="NotificationMessageConnectionError">Не удалось подключиться к API. Проверьте сетевое подключение или повторите попытку позже.</system:String>
+    <system:String x:Key="NotificationMessageJsonError">Формат полученных данных некорректен. Проверьте сетевое подключение или повторите попытку позже.</system:String>
+    <system:String x:Key="NotificationMessageOtherError">Произошла ошибка. Подробности в файлах журнала в папке /Log/.</system:String>
+    <system:String xml:space="preserve" x:Key="NotificationMessageRetrying">Повторная попытка. </system:String>
+    <system:String x:Key="NotificationMessageAttempt">.</system:String>
+    <system:String x:Key="NotificationMessageMaximumAttemptsReached">Достигнуто максимальное количество попыток. Прервано.</system:String>
+    <system:String xml:space="preserve" x:Key="NotificationMessageScreenshotIsSavedTo">Скриншот сохранён в </system:String>
+    <system:String x:Key="NotificationMessagePeriod">.</system:String>
+    <system:String x:Key="NotificationMessageSoftwareUpdateDownloading">Загрузка обновления приложения, пожалуйста, подождите...</system:String>
+    <system:String x:Key="NotificationMessageShiplistUpdateDownloading">Загрузка обновления списка кораблей, пожалуйста, подождите...</system:String>
+    <system:String x:Key="NotificationMessageSoftwareUpdateComplete">Обновление завершено. Приложение будет закрыто. Запустите снова для использования последней версии.</system:String>
+    <system:String x:Key="NotificationMessageShiplistUpdateComplete">Обновление списка кораблей завершено.</system:String>
+    <system:String x:Key="NotificationMessageUpdateConnectionError">Не удалось подключиться к серверу обновлений. Проверьте сетевое подключение или повторите попытку позже.</system:String>
+    <system:String x:Key="NotificationMessageUpdateFileHashError">Файл, загруженный с сервера обновлений, повреждён. Проверьте сетевое подключение или повторите попытку позже.</system:String>
+
+    <system:String x:Key="MsgBoxError">Ошибка</system:String>
+    <system:String x:Key="MsgBoxInputError">Введено неверное значение.</system:String>
+    <system:String x:Key="MsgBoxGamePathErrorConfirmation">WorldOfWarships.exe не обнаружен в выбранной папке. Вероятно, путь к игре указан неверно. (Например, выбрана подпапка \replay вместо корневой папки игры.) Всё равно использовать?</system:String>
+    <system:String x:Key="MsgBoxConfirmation">Подтверждение</system:String>
+    <system:String x:Key="MsgBoxOutputTextboxUnlockConfirmation">Я обещаю НЕ отправлять сообщения, нарушающие EULA и/или Правила игры и кланов World of Warships, в публичные каналы игры.</system:String>
+    <system:String x:Key="MsgBoxUpdate">Обновление</system:String>
+    <system:String x:Key="MsgBoxSoftwareUpdateFound">Найдено обновление приложения.</system:String>
+    <system:String x:Key="MsgBoxShiplistUpdateFound">Найдено обновление списка кораблей.</system:String>
+    <system:String x:Key="MsgBoxUpdatesNotFound">Приложение и список кораблей обновлены.</system:String>
+    <system:String xml:space="preserve" x:Key="MsgBoxCurrentVersion">Текущая версия: </system:String>
+    <system:String xml:space="preserve" x:Key="MsgBoxLatestVersion">Последняя версия: </system:String>
+    <system:String x:Key="MsgBoxUpdateComfirm">Обновить?</system:String>
+    <system:String x:Key="MsgBoxSoftwareUpdateComplete">Обновление завершено. Приложение будет закрыто. Запустите снова для использования последней версии.</system:String>
+    <system:String x:Key="MsgBoxShiplistUpdateComplete">Обновление списка кораблей завершено.</system:String>
+
+    <system:String x:Key="ContextMenuCopyPlayerStatistics">Копировать статистику игрока</system:String>
+    <system:String x:Key="ContextMenuCheckOnWoWSOfficialSite">Посмотреть на официальном сайте</system:String>
+    <system:String x:Key="ContextMenuCheckOnWoWSNumbers">Посмотреть на WoWS Numbers</system:String>
+    <system:String x:Key="ContextMenuCheckOnProships">Посмотреть на Proships.su</system:String>
+    <system:String x:Key="ContextMenuAddToWatchListPositive">Добавить в список (Положительный)</system:String>
+    <system:String x:Key="ContextMenuAddToWatchListNegative">Добавить в список (Отрицательный)</system:String>
+    <system:String x:Key="ContextMenuAddToWatchListCheater">Добавить в список (Читер / Бот)</system:String>
+    <system:String x:Key="ContextMenuRemoveFromWatchList">Удалить из списка наблюдения</system:String>
+
+    <system:String x:Key="StringNone">Нет</system:String>
+    <system:String x:Key="StringUnknownShip">Неизвестный корабль</system:String>
+
+</ResourceDictionary>

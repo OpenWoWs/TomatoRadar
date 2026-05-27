@@ -373,7 +373,7 @@
     <system:String x:Key="NotificationMessageDataRetrieved">Data retrieved successfully.</system:String>
     <system:String x:Key="NotificationMessageFileError">The file opened is not a valid tempArenaInfo.json or .wowsreplay file.</system:String>
     <system:String x:Key="NotificationMessageServerAutoDetectionFailed">The game server auto detection has failed. Please select the game server manually in the config window. </system:String>
-    <system:String x:Key="NotificationMessageConnectionError">The connection to the Wargaming API has failed. Please check your network connection or try again later.</system:String>
+    <system:String x:Key="NotificationMessageConnectionError">The connection to the API has failed. Please check your network connection or try again later.</system:String>
     <system:String x:Key="NotificationMessageJsonError">The format of the retrieved data is incorrect. Please check your network connection or try again later.</system:String>
     <system:String x:Key="NotificationMessageOtherError">An error has occurred. Read log files under the /Log/ folder for more information.</system:String>
     <system:String xml:space="preserve" x:Key="NotificationMessageRetrying">Retrying. Attempt </system:String>

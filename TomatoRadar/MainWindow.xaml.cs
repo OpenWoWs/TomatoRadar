@@ -38,6 +38,9 @@ namespace TomatoRadar
             ComboBoxLanguage.Items.Add(new ListItem() { Content = Application.Current.FindResource("ComboBoxItemLanguageAuto"), Value = "AUTO" });
             ComboBoxLanguage.Items.Add(new ListItem() { Content = Application.Current.FindResource("ComboBoxItemLanguageNameEN_US"), Value = "EN_US" });
             ComboBoxLanguage.Items.Add(new ListItem() { Content = Application.Current.FindResource("ComboBoxItemLanguageNameZH_CN"), Value = "ZH_CN" });
+            ComboBoxLanguage.Items.Add(new ListItem() { Content = Application.Current.FindResource("ComboBoxItemLanguageNameRU_RU"), Value = "RU_RU" });
+            ComboBoxLanguage.Items.Add(new ListItem() { Content = Application.Current.FindResource("ComboBoxItemLanguageNameJA_JP"), Value = "JA_JP" });
+            ComboBoxLanguage.Items.Add(new ListItem() { Content = Application.Current.FindResource("ComboBoxItemLanguageNameZH_TW"), Value = "ZH_TW" });
             ComboBoxLanguage.SelectedValue = Properties.Settings.Default.Language;
             ComboBoxLanguage.SelectionChanged += ComboBoxLanguage_SelectionChanged;
 
@@ -242,9 +245,7 @@ namespace TomatoRadar
             NotificationMessageUtils.InitializeNotificationMessageDataGrid(DataGridNotificationMessages);
             NetworkUtils.InitializeHttpClient();
 
-            // string shipInfoPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Resources\Json\ships_wg.json");
-            // TODO: Now we are still using ships info from lxdev.org, which extracts out ships.json
-            string shipInfoPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Resources\Json\ships.json");
+            string shipInfoPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Resources\Json\ships_wg.json");
             string shipInfoPathLesta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Resources\Json\ships_lesta.json");
             ShipInfoUtils.RegisterShipInfoFile(Server.EU, shipInfoPath);
             ShipInfoUtils.RegisterShipInfoFile(Server.NA, shipInfoPath);

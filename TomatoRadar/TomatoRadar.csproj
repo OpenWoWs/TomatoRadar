@@ -8,7 +8,7 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>True</UseWindowsForms>
-    <ApplicationIcon>Resources\Image\monkey-face-navy.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\Image\tomato.ico</ApplicationIcon>
     <AssemblyVersion>2.1.*</AssemblyVersion>
     <FileVersion></FileVersion>
     <Version>2.1.0</Version>
@@ -30,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Resources\Image\monkey-face-navy.ico" />
+    <Content Include="Resources\Image\tomato.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -69,12 +69,7 @@
       <None Update="Resources\Json\ships_lesta.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
-    <None Update="Resources\Json\ships_en-us.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Resources\Json\ships_zh-cn.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+
     <None Update="WatchList.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
