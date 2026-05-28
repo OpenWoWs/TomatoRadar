@@ -148,9 +148,9 @@
     <system:String x:Key="LabelWeightedWinrateShipBattlesAtMaxWeight">最大加重時の艦艇戦闘数</system:String>
     <system:String x:Key="LabelWeightedWinratePieChartDescriptionLine1">各戦闘タイプの加重勝率への寄与</system:String>
     <system:String x:Key="LabelWeightedWinratePieChartDescriptionLine2">（艦艇戦闘数 ≥ 最大加重時の艦艇戦闘数の場合）</system:String>
-    <system:String x:Key="LabelAboutLine1">このアプリケーションは完全無料で、MITライセンスの下でオープンソースです。</system:String>
+    <system:String x:Key="LabelAboutLine1">このアプリケーションは完全無料で、GNU GPL 3.0ライセンスの下でオープンソースです。</system:String>
     <system:String xml:space="preserve" x:Key="LabelAboutLine2Part1">Web: </system:String>
-    <system:String xml:space="preserve" x:Key="LabelAboutLine2Part2">  QQグループ: 1012624096 / 272868560</system:String>
+    <system:String xml:space="preserve" x:Key="LabelAboutLine2Part2">  QQグループ: 616060379</system:String>
     <system:String x:Key="LabelWatchList">注目リスト</system:String>
     <system:String x:Key="LabelPositive">ポジティブ</system:String>
     <system:String x:Key="LabelNegative">ネガティブ</system:String>
@@ -281,7 +281,7 @@
             <LineBreak/>
             プレイヤーを右クリックしてウェブサイトで統計を確認するか、注目リストから削除します。
             <LineBreak/>
-            注目リストはアプリケーションフォルダ内のWatchList.jsonファイルに保存されます。
+            注目リストはユーザーデータフォルダ内のWatchList.jsonファイルに保存されます。
         </TextBlock>
     </ToolTip>
 
@@ -367,6 +367,11 @@
     <system:String x:Key="ChkBoxEnableYuyukoAPIPush">Yuyuko APIプッシュサービスを有効にする（ベータ版）</system:String>
     <system:String x:Key="ChkBoxEnableDebugMode">デバッグモードを有効にする</system:String>
 
+    <system:String x:Key="LabelDataDirectory">アプリケーションデータディレクトリ</system:String>
+    <system:String x:Key="BtnOpenDirectory">ディレクトリを開く</system:String>
+
+    <system:String x:Key="NotificationMessageCheckingForUpdates">アップデートを確認中…</system:String>
+    <system:String x:Key="NotificationMessageWaitingForBattle">戦闘またはリプレイを待機中…</system:String>
     <system:String x:Key="NotificationMessageNewPlayersRevealed">{0}人の新しいプレイヤーを検出</system:String>
     <system:String x:Key="NotificationMessageRetrivingData">サーバーからデータを取得中です。お待ちください…</system:String>
     <system:String x:Key="NotificationMessageDataRetrieved">データが正常に取得されました。</system:String>

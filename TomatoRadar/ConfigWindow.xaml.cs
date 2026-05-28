@@ -154,7 +154,7 @@ namespace TomatoRadar
 
         private void RefreshWatchList()
         {
-            JObject JObjectWatchList = WatchListUtils.ReadWatchList(@".\WatchList.json");
+            JObject JObjectWatchList = WatchListUtils.ReadWatchList(Path.Combine(App.DataDirectory, "WatchList.json"));
 
             List<Player> WatchListPositive = new();
             List<Player> WatchListNegative = new();
@@ -308,7 +308,7 @@ namespace TomatoRadar
             MenuItem? menu = sender as MenuItem;
             Player? p = menu!.DataContext as Player;
             p!.WatchStatus = WatchStatus.POSITIVE;
-            WatchListUtils.SaveWatchList(p, @".\WatchList.json");
+            WatchListUtils.SaveWatchList(p, Path.Combine(App.DataDirectory, "WatchList.json"));
             RefreshWatchList();
         }
 
@@ -317,7 +317,7 @@ namespace TomatoRadar
             MenuItem? menu = sender as MenuItem;
             Player? p = menu!.DataContext as Player;
             p!.WatchStatus = WatchStatus.NEGATIVE;
-            WatchListUtils.SaveWatchList(p, @".\WatchList.json");
+            WatchListUtils.SaveWatchList(p, Path.Combine(App.DataDirectory, "WatchList.json"));
             RefreshWatchList();
         }
 
@@ -326,7 +326,7 @@ namespace TomatoRadar
             MenuItem? menu = sender as MenuItem;
             Player? p = menu!.DataContext as Player;
             p!.WatchStatus = WatchStatus.CHEATER;
-            WatchListUtils.SaveWatchList(p, @".\WatchList.json");
+            WatchListUtils.SaveWatchList(p, Path.Combine(App.DataDirectory, "WatchList.json"));
             RefreshWatchList();
         }
 
@@ -335,7 +335,7 @@ namespace TomatoRadar
             MenuItem? menu = sender as MenuItem;
             Player? p = menu!.DataContext as Player;
             p!.WatchStatus = WatchStatus.NONE;
-            WatchListUtils.SaveWatchList(p, @".\WatchList.json");
+            WatchListUtils.SaveWatchList(p, Path.Combine(App.DataDirectory, "WatchList.json"));
             RefreshWatchList();
         }
 
@@ -407,6 +407,14 @@ namespace TomatoRadar
             }
             BtnCheckForUpdates.IsEnabled = true;
             LabelShipListVersionDateStr.Content = $"{ShipInfoUtils.GetShipInfoVersion(Server.EU)} ({ShipInfoUtils.GetShipInfoDate(Server.EU)})";
+        }
+        private void BtnOpenDataDirectory_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = App.DataDirectory,
+                UseShellExecute = true,
+            });
         }
     }
 }

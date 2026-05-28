@@ -61,5 +61,8 @@ Logs/
 publish/
 **/PublishProfiles/*.pubxml.user
 
+## Build artifacts
+artifacts/
+
 ## Secret
 /docs/footstep/

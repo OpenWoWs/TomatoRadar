@@ -525,6 +525,7 @@
             <TextBox x:Name="TxtOutputText" HorizontalAlignment="Stretch" Margin="5" TextWrapping="Wrap" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto" IsEnabled="{Binding Source={x:Static p:Settings.Default}, Path=OutputTextUnlock}" FontSize="{Binding Source={x:Static p:Settings.Default}, Path=OutputTextFontSize}"/>
         </Grid>
         <Grid Grid.Row="3" Grid.Column="1" Grid.RowSpan="2">
+            <ProgressBar x:Name="ProgressBarDownload" Height="22" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Visibility="Collapsed"/>
             <DataGrid x:Name="DataGridNotificationMessages" Margin="5,10,0,0" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" CanUserResizeColumns="False" SelectionMode="Single" HeadersVisibility="Column" ItemsSource="{Binding Source={x:Static utils:NotificationMessageUtils.NotificationMessageCollection}}" CanUserReorderColumns="False" CanUserSortColumns="False" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top">
                 <DataGrid.Resources>
                     <DataTemplate x:Key="TimeHeaderTemplate">
@@ -565,7 +566,7 @@
                 <TextBlock Text="{DynamicResource LabelAboutLine1}" HorizontalAlignment="Right" FontSize="11" Margin="0,5,0,5"/>
                 <TextBlock HorizontalAlignment="Right" FontSize="11">
                     <Run Text="{DynamicResource LabelAboutLine2Part1}"/>
-                    <Hyperlink x:Name="HyperLinkTomatoRadarWebsite" NavigateUri="https://lxdev.org/aperadar/" RequestNavigate="HyperLinkTomatoRadarWebsite_RequestNavigate">https://lxdev.org/aperadar/</Hyperlink>
+                    <Hyperlink x:Name="HyperLinkTomatoRadarWebsite" NavigateUri="https://github.com/OpenKorabli/TomatoRadar/" RequestNavigate="HyperLinkTomatoRadarWebsite_RequestNavigate">https://github.com/OpenKorabli/TomatoRadar/</Hyperlink>
                     <Run Text="{DynamicResource LabelAboutLine2Part2}"/>
                 </TextBlock>
             </StackPanel>

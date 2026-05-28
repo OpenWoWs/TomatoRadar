@@ -47,13 +47,35 @@ namespace TomatoRadar.Utils
             }
         }
 
-        public static async Task<string> HttpDownloadFile(string url, string filename)
+        public static async Task<string> HttpDownloadFile(string url, string filename, IProgress<double>? progress = null)
         {
             try
             {
                 using HttpResponseMessage response = await hc.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
                 using FileStream fs = new(filename, FileMode.Create, FileAccess.ReadWrite, FileShare.None);
-                await response.Content.CopyToAsync(fs);
+
+                if (progress == null)
+                {
+                    await response.Content.CopyToAsync(fs);
+                }
+                else
+                {
+                    long? totalBytes = response.Content.Headers.ContentLength;
+                    using Stream contentStream = await response.Content.ReadAsStreamAsync();
+                    byte[] buffer = new byte[8192];
+                    long totalRead = 0;
+                    int bytesRead;
+                    while ((bytesRead = await contentStream.ReadAsync(buffer, 0, buffer.Length)) > 0)
+                    {
+                        await fs.WriteAsync(buffer, 0, bytesRead);
+                        totalRead += bytesRead;
+                        if (totalBytes.HasValue && totalBytes.Value > 0)
+                        {
+                            progress.Report((double)totalRead / totalBytes.Value * 100);
+                        }
+                    }
+                }
+
                 return filename;
             }
             catch (Exception ex)

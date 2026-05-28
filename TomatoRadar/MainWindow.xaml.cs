@@ -186,7 +186,6 @@ namespace TomatoRadar
 
             if (!Properties.Settings.Default.SettingsUpgradeDone)
             {
-                LogUtils.WriteInfo($"Settings Upgrade Done");
                 Properties.Settings.Default.Upgrade();
                 Properties.Settings.Default.SettingsUpgradeDone = true;
             }
@@ -243,10 +242,11 @@ namespace TomatoRadar
             ((App)Application.Current).WindowPlace.Register(this);
 
             NotificationMessageUtils.InitializeNotificationMessageDataGrid(DataGridNotificationMessages);
+            App.DownloadProgressBar = ProgressBarDownload;
             NetworkUtils.InitializeHttpClient();
 
-            string shipInfoPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Resources\Json\ships_wg.json");
-            string shipInfoPathLesta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Resources\Json\ships_lesta.json");
+            string shipInfoPath = Path.Combine(App.ShipInfoDirectory, "ships_wg.json");
+            string shipInfoPathLesta = Path.Combine(App.ShipInfoDirectory, "ships_lesta.json");
             ShipInfoUtils.RegisterShipInfoFile(Server.EU, shipInfoPath);
             ShipInfoUtils.RegisterShipInfoFile(Server.NA, shipInfoPath);
             ShipInfoUtils.RegisterShipInfoFile(Server.ASIA, shipInfoPath);
@@ -259,20 +259,30 @@ namespace TomatoRadar
             LogUtils.WriteInfo($"ShipInfoFileVersion(RU): {ShipInfoUtils.GetShipInfoVersion(Server.RU)}");
             LogUtils.WriteInfo($"ShipInfoFileDate(RU): {ShipInfoUtils.GetShipInfoDate(Server.RU)}");
 
-            SoftwareUpdateUtils.CleanOldVersionFiles();
+
+            SwitchLanguage(LanguageExt.GetLanguageByName(Properties.Settings.Default.Language));
 
             if (Properties.Settings.Default.CheckForUpdatesOnStartup)
             {
-                _ = SoftwareUpdateUtils.CheckForUpdates();
+                NotificationMessageUtils.CreateMessage(MessageType.INFO, FindResource("NotificationMessageCheckingForUpdates") as string);
+                SoftwareUpdateUtils.CheckForUpdates().ContinueWith(_ =>
+                {
+                    Dispatcher.Invoke(() =>
+                    {
+                        NotificationMessageUtils.CreateMessage(MessageType.INFO, FindResource("NotificationMessageWaitingForBattle") as string);
+                    });
+                }, TaskScheduler.Default);
             }
-
+            else
+            {
+                NotificationMessageUtils.CreateMessage(MessageType.INFO, FindResource("NotificationMessageWaitingForBattle") as string);
+            }
             WinrateChart.TooltipTextPaint = new SolidColorPaint { Color = SKColors.Black, FontFamily = WinrateChart.FontFamily.Source };
             WinrateChart.XAxes = new Axis[] { new Axis { IsVisible = false } };
             WinrateChart.YAxes = new Axis[] { new Axis { Labeler = d => { return d.ToString("p1"); }, CrosshairPaint = new SolidColorPaint(SKColors.Gray) } };
             KDEChart.XAxes = new Axis[] { new Axis { Labeler = d => { return d.ToString("p1"); }, SeparatorsPaint = new SolidColorPaint(SKColors.LightGray), CrosshairPaint = new SolidColorPaint(SKColors.Gray) } };
             KDEChart.YAxes = new Axis[] { new Axis { IsVisible = false } };
 
-            SwitchLanguage(LanguageExt.GetLanguageByName(Properties.Settings.Default.Language));
             RefreshDataGridColumns(Properties.Settings.Default.EnemiesDisplayMirrored);
 
             DispatcherTimer timer = new()
@@ -312,6 +322,7 @@ namespace TomatoRadar
                         WinrateChart.Series = Array.Empty<ISeries>();
                         KDEChart.Series = Array.Empty<ISeries>();
                         TxtOutputText.Text = "";
+                        NotificationMessageUtils.CreateMessage(MessageType.INFO, FindResource("NotificationMessageWaitingForBattle") as string);
                         return;
                     }
 
@@ -320,6 +331,21 @@ namespace TomatoRadar
                         _currentBattleFileSize = currentSize;
                         _ = FogOfWarScanAsync();
                     }
+                    return;
+                }
+
+                if (!File.Exists(_currentBattleFilePath))
+                {
+                    LogUtils.WriteInfo("Battle ended (temp file deleted). Resetting for next battle.");
+                    DataContext = null;
+                    _currentBattleFilePath = "";
+                    _currentBattleFileSize = 0;
+                    _isFogOfWarBattle = false;
+                    _knownVehicleNames.Clear();
+                    WinrateChart.Series = Array.Empty<ISeries>();
+                    KDEChart.Series = Array.Empty<ISeries>();
+                    TxtOutputText.Text = "";
+                    NotificationMessageUtils.CreateMessage(MessageType.INFO, FindResource("NotificationMessageWaitingForBattle") as string);
                 }
                 return;
             }
@@ -367,7 +393,7 @@ namespace TomatoRadar
                     Server secondaryServer = ServerExt.GetServerByName(Properties.Settings.Default.SecondaryServer);
                     LogUtils.WriteInfo($"secondaryServer={ServerExt.GetNameByServer(secondaryServer)}");
 
-                    JObject JObjectWatchList = WatchListUtils.ReadWatchList(@".\WatchList.json");
+                    JObject JObjectWatchList = WatchListUtils.ReadWatchList(Path.Combine(App.DataDirectory, "WatchList.json"));
                     JObject? JObjectTempArenaInfo = FileUtils.GetPlayerListJObject(server, filename);
                     if (JObjectTempArenaInfo == null)
                         return;
@@ -604,7 +630,7 @@ namespace TomatoRadar
 
                 if (newPlayerList.Count > 0 && DataContext is Battlefield battlefield)
                 {
-                    JObject JObjectWatchList = WatchListUtils.ReadWatchList(@".\WatchList.json");
+                    JObject JObjectWatchList = WatchListUtils.ReadWatchList(Path.Combine(App.DataDirectory, "WatchList.json"));
                     foreach (Player p in newPlayerList)
                     {
                         if (p.ID != "-1" && JObjectWatchList[ServerExt.GetNameByServer(p.Server)]?.SelectToken(p.ID) != null)
@@ -710,11 +736,11 @@ namespace TomatoRadar
             PngBitmapEncoder encoder = new();
             encoder.Frames.Add(BitmapFrame.Create(bitmap));
             string datetimestr = DateTimeOffset.Now.ToString("yyyyMMdd_HHmmss_ffff");
-            if (!Directory.Exists(@".\Screenshot\"))
+            if (!Directory.Exists(Path.Combine(App.DataDirectory, "Screenshot")))
             {
-                Directory.CreateDirectory(@".\Screenshot\");
+                Directory.CreateDirectory(Path.Combine(App.DataDirectory, "Screenshot"));
             }
-            string filePath = $@".\Screenshot\{datetimestr}.png";
+            string filePath = Path.Combine(App.DataDirectory, "Screenshot", $"{datetimestr}.png");
             using FileStream fs = new(filePath, FileMode.Create);
             encoder.Save(fs);
             NotificationMessageUtils.CreateMessage(MessageType.INFO, $"{FindResource("NotificationMessageScreenshotIsSavedTo") as string}{filePath}{FindResource("NotificationMessagePeriod") as string}");
@@ -748,7 +774,7 @@ namespace TomatoRadar
             MenuItem? menu = sender as MenuItem;
             Player? p = menu!.DataContext as Player;
             p!.WatchStatus = WatchStatus.POSITIVE;
-            WatchListUtils.SaveWatchList(p, @".\WatchList.json");
+            WatchListUtils.SaveWatchList(p, Path.Combine(App.DataDirectory, "WatchList.json"));
         }
 
         private void ContextMenuAddToWatchListNegative_Click(object sender, RoutedEventArgs e)
@@ -756,7 +782,7 @@ namespace TomatoRadar
             MenuItem? menu = sender as MenuItem;
             Player? p = menu!.DataContext as Player;
             p!.WatchStatus = WatchStatus.NEGATIVE;
-            WatchListUtils.SaveWatchList(p, @".\WatchList.json");
+            WatchListUtils.SaveWatchList(p, Path.Combine(App.DataDirectory, "WatchList.json"));
         }
 
         private void ContextMenuAddToWatchListCheater_Click(object sender, RoutedEventArgs e)
@@ -764,7 +790,7 @@ namespace TomatoRadar
             MenuItem? menu = sender as MenuItem;
             Player? p = menu!.DataContext as Player;
             p!.WatchStatus = WatchStatus.CHEATER;
-            WatchListUtils.SaveWatchList(p, @".\WatchList.json");
+            WatchListUtils.SaveWatchList(p, Path.Combine(App.DataDirectory, "WatchList.json"));
         }
 
         private void ContextMenuRemoveFromWatchList_Click(object sender, RoutedEventArgs e)
@@ -772,7 +798,7 @@ namespace TomatoRadar
             MenuItem? menu = sender as MenuItem;
             Player? p = menu!.DataContext as Player;
             p!.WatchStatus = WatchStatus.NONE;
-            WatchListUtils.SaveWatchList(p, @".\WatchList.json");
+            WatchListUtils.SaveWatchList(p, Path.Combine(App.DataDirectory, "WatchList.json"));
         }
 
         //the ToolTipPlayerDetails.LayoutTransform is bind to the ViewboxPlayerList.Tag

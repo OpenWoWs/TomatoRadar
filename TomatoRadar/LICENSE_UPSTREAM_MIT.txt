@@ -1,3 +1,10 @@
+This file preserves the original MIT License from the upstream project
+ApeRadar (https://lxdev.org/aperadar/), by zylalx1.
+
+The current TomatoRadar project is licensed under GNU GPL 3.0. See LICENSE.
+
+===============================================================================
+
 MIT License
 
 Copyright (c) 2023 zylalx1

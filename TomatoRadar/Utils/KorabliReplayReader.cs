@@ -169,6 +169,36 @@ namespace TomatoRadar.Utils
                 }
             }
 
+            string? arenaJsonPlayerName = null;
+            try
+            {
+                string? dir = Path.GetDirectoryName(filePath);
+                if (dir != null)
+                {
+                    string arenaJsonPath = Path.Combine(dir, "tempArenaInfo.json");
+                    if (File.Exists(arenaJsonPath))
+                    {
+                        JObject arenaJson = FileUtils.ReadTempArenaInfoFile(arenaJsonPath);
+                        JArray? vehicles = arenaJson["vehicles"] as JArray;
+                        if (vehicles != null)
+                        {
+                            foreach (var v in vehicles)
+                            {
+                                string? name = v["name"]?.Value<string>();
+                                if (name != null && !name.StartsWith(":"))
+                                {
+                                    arenaJsonPlayerName = name;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch { }
+
+            string? nameToMatch = arenaJsonPlayerName ?? currentPlayerName;
+
             int currentTeam;
             if (observedTeam.HasValue)
             {
@@ -176,16 +206,36 @@ namespace TomatoRadar.Utils
             }
             else
             {
-                int team0Count = 0, team1Count = 0;
-                foreach (var e in entities)
+                int? matchedTeamId = null;
+                if (nameToMatch != null)
                 {
-                    if (e.teamId == 0) team0Count++;
-                    if (e.teamId == 1) team1Count++;
+                    foreach (var e in entities)
+                    {
+                        if (string.Equals(e.displayName, nameToMatch, StringComparison.OrdinalIgnoreCase) && e.teamId >= 0)
+                        {
+                            matchedTeamId = e.teamId;
+                            break;
+                        }
+                    }
                 }
-                if (team0Count > 0 || team1Count > 0)
-                    currentTeam = team0Count <= team1Count ? 0 : 1;
+
+                if (matchedTeamId.HasValue)
+                {
+                    currentTeam = matchedTeamId.Value;
+                }
                 else
-                    currentTeam = 1;
+                {
+                    int team0Count = 0, team1Count = 0;
+                    foreach (var e in entities)
+                    {
+                        if (e.teamId == 0) team0Count++;
+                        if (e.teamId == 1) team1Count++;
+                    }
+                    if (team0Count > 0 || team1Count > 0)
+                        currentTeam = team0Count <= team1Count ? 0 : 1;
+                    else
+                        currentTeam = 1;
+                }
             }
 
             var vehiclesArray = new JArray();
@@ -436,10 +486,13 @@ namespace TomatoRadar.Utils
         private static byte[]? TryReadReplayFile(string filePath)
         {
             long fileLen;
-            using (FileStream fs = new(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete))
+            try
             {
+                using FileStream fs = new(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete);
                 fileLen = fs.Length;
             }
+            catch (FileNotFoundException) { return null; }
+            catch (DirectoryNotFoundException) { return null; }
 
             if (fileLen < 12)
                 return null;

@@ -9,9 +9,8 @@
     <UseWPF>true</UseWPF>
     <UseWindowsForms>True</UseWindowsForms>
     <ApplicationIcon>Resources\Image\tomato.ico</ApplicationIcon>
-    <AssemblyVersion>2.1.*</AssemblyVersion>
-    <FileVersion></FileVersion>
-    <Version>2.1.0</Version>
+    <AssemblyVersion>2.1.0</AssemblyVersion>
+    <Deterministic>False</Deterministic>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -50,7 +49,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="LICENSE.txt">
+    <None Update="LICENSE">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="LICENSE_UPSTREAM_MIT.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="log4net.config">
@@ -70,17 +72,8 @@
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
 
-    <None Update="WatchList.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Include="Resources\scripts\**\*">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>Resources\scripts\%(RecursiveDir)%(Filename)%(Extension)</Link>
-    </Content>
-  </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Resources\Image\wows-numbers-icon.png" />

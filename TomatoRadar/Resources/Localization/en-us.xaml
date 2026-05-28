@@ -149,9 +149,9 @@
     <system:String x:Key="LabelWeightedWinrateShipBattlesAtMaxWeight">Ship Battles at Max Weight</system:String>
     <system:String x:Key="LabelWeightedWinratePieChartDescriptionLine1">Contribution of each Battle Type to Weighted Winrate</system:String>
     <system:String x:Key="LabelWeightedWinratePieChartDescriptionLine2">(When Ship Battles ≥ Ship Battles at Max Weight)</system:String>
-    <system:String x:Key="LabelAboutLine1">This application is completely free and open-source under the MIT license.</system:String>
+    <system:String x:Key="LabelAboutLine1">This application is completely free and open-source under the GNU GPL 3.0 license.</system:String>
     <system:String xml:space="preserve" x:Key="LabelAboutLine2Part1">Web: </system:String>
-    <system:String xml:space="preserve" x:Key="LabelAboutLine2Part2">  QQ Group: 1012624096 / 272868560</system:String>
+    <system:String xml:space="preserve" x:Key="LabelAboutLine2Part2">  QQ Group: 616060379</system:String>
     <system:String x:Key="LabelWatchList">Watch List</system:String>
     <system:String x:Key="LabelPositive">Positive</system:String>
     <system:String x:Key="LabelNegative">Negative</system:String>
@@ -282,7 +282,7 @@
             <LineBreak/>
             Right click on a player to check his statistics on websites or remove him from the watch list.
             <LineBreak/>
-            The watch list is saved in the WatchList.json file in the application folder.
+            The watch list is saved in WatchList.json in the user data directory.
         </TextBlock>
     </ToolTip>
 
@@ -368,6 +368,11 @@
     <system:String x:Key="ChkBoxEnableYuyukoAPIPush">Enable Yuyuko API Push Service (Beta)</system:String>
     <system:String x:Key="ChkBoxEnableDebugMode">Enable Debug Mode</system:String>
 
+    <system:String x:Key="LabelDataDirectory">App Data Directory</system:String>
+    <system:String x:Key="BtnOpenDirectory">Open Directory</system:String>
+
+    <system:String x:Key="NotificationMessageCheckingForUpdates">Checking for updates...</system:String>
+    <system:String x:Key="NotificationMessageWaitingForBattle">Waiting for battle or replay...</system:String>
     <system:String x:Key="NotificationMessageNewPlayersRevealed">{0} new players detected</system:String>
     <system:String x:Key="NotificationMessageRetrivingData">Retrieving data from server, please wait...</system:String>
     <system:String x:Key="NotificationMessageDataRetrieved">Data retrieved successfully.</system:String>

@@ -1,12 +1,13 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Windows;
-using System.IO.Compression;
-using System.Security.Cryptography;
 using TomatoRadar.Models;
 
 namespace TomatoRadar.Utils
@@ -15,16 +16,9 @@ namespace TomatoRadar.Utils
     {
         const string MainMetadataUrl = "https://dl.localizedkorabli.org/tomatoradar/app/metadata.json";
 
-        static string softwareLatestVersion = "";
-        static string softwareLatestDate = "";
-        static string softwareLatestUrl = "";
-        static string softwareLatestFileName = "";
-        static string softwareLasestSHA256 = "";
+        static string DownloadDirectory => Path.Combine(App.DataDirectory, "Download");
 
-        static string downloadDirectory = @".\Download";
-        static string[] ignoredDirectoryList = { @".\Log", @".\Screenshot" };
-        static string[] ignoredFileList = { @".\placement.config", @".\WatchList.json" };
-        static string[] occupiedFileList = { @".\TomatoRadar.exe", @".\libSkiaSharp.dll" };
+        private static bool _skipDirectoryCleanup;
 
         public static async Task<bool> CheckForUpdates()
         {
@@ -37,17 +31,11 @@ namespace TomatoRadar.Utils
                     return false;
                 }
 
-                downloadDirectory = mainMeta["download_directory"]!.Value<string>()!;
-
-                softwareLatestVersion = mainMeta["software_latest_version"]!.Value<string>()!;
-                softwareLatestDate = mainMeta["software_latest_date"]!.Value<string>()!;
-                softwareLatestUrl = mainMeta["software_latest_url"]!.Value<string>()!;
-                softwareLatestFileName = softwareLatestUrl.Substring(softwareLatestUrl.LastIndexOf('/') + 1);
-                softwareLasestSHA256 = mainMeta["software_latest_sha256"]!.Value<string>()!;
-
-                ignoredDirectoryList = mainMeta["software_update_ignored_directory_list"]!.ToObject<string[]>()!;
-                ignoredFileList = mainMeta["software_update_ignored_file_list"]!.ToObject<string[]>()!;
-                occupiedFileList = mainMeta["software_update_occupied_file_list"]!.ToObject<string[]>()!;
+                string softwareLatestVersion = mainMeta["software_latest_version"]!.Value<string>()!;
+                string softwareLatestDate = mainMeta["software_latest_date"]!.Value<string>()!;
+                string softwareLatestUrl = mainMeta["software_latest_url"]!.Value<string>()!;
+                string softwareLatestFileName = softwareLatestUrl.Substring(softwareLatestUrl.LastIndexOf('/') + 1);
+                string softwareLatestSha256 = mainMeta["software_latest_sha256"]!.Value<string>()!;
 
                 JObject shiplistMetaMap = (JObject)mainMeta["shiplist_metadata"]!;
 
@@ -67,8 +55,8 @@ namespace TomatoRadar.Utils
                     });
                 }
 
-                int softwareDateInt = Convert.ToInt32(softwareLatestDate);
-                int localSoftwareDate = Convert.ToInt32(Properties.Settings.Default.SoftwareDate);
+                long softwareLatestBuild = Convert.ToInt64(softwareLatestDate);
+                long localAppBuild = Convert.ToInt64(Properties.Settings.Default.SoftwareDate);
 
                 bool anyShiplistNeedsUpdate = false;
                 foreach (var entry in shiplistEntries)
@@ -78,61 +66,60 @@ namespace TomatoRadar.Utils
                         anyShiplistNeedsUpdate = true;
                 }
 
-                if (softwareDateInt <= localSoftwareDate && !anyShiplistNeedsUpdate)
+                if (softwareLatestBuild <= localAppBuild && !anyShiplistNeedsUpdate)
                 {
                     return false;
                 }
 
-                if (softwareDateInt > localSoftwareDate)
+                if (softwareLatestBuild > localAppBuild)
                 {
                     if (MessageBox.Show($"{Application.Current.FindResource("MsgBoxSoftwareUpdateFound") as string}\n{Application.Current.FindResource("MsgBoxCurrentVersion") as string} {Properties.Settings.Default.SoftwareVersion} ({Properties.Settings.Default.SoftwareDate})\n{Application.Current.FindResource("MsgBoxLatestVersion") as string} {softwareLatestVersion} ({softwareLatestDate})\n{Application.Current.FindResource("MsgBoxUpdateComfirm") as string}", Application.Current.FindResource("MsgBoxUpdate") as string, MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
                     {
                         NotificationMessageUtils.CreateMessage(MessageType.INFO, Application.Current.FindResource("NotificationMessageSoftwareUpdateDownloading") as string);
-                        Directory.CreateDirectory(downloadDirectory);
-                        await NetworkUtils.HttpDownloadFile(softwareLatestUrl, $@"{downloadDirectory}\{softwareLatestFileName}");
-                        if (mainMeta["software_hash_validate_enabled"]!.Value<bool>())
-                        {
-                            using SHA256 sha = SHA256.Create();
-                            using FileStream fs = new($@"{downloadDirectory}\{softwareLatestFileName}", FileMode.Open);
-                            fs.Position = 0;
-                            if (BitConverter.ToString(sha.ComputeHash(fs)).Replace("-", "") != softwareLasestSHA256)
-                            {
-                                throw new FileFormatException("FileHashInvalid");
-                            }
-                        }
-                        ZipFile.ExtractToDirectory($@"{downloadDirectory}\{softwareLatestFileName}", $@"{downloadDirectory}\", true);
+                        Directory.CreateDirectory(DownloadDirectory);
+                        string installerPath = Path.Combine(DownloadDirectory, softwareLatestFileName);
 
-                        foreach (string directoryname in Directory.GetDirectories($@"{downloadDirectory}\TomatoRadar\"))
+                        var progress = new Progress<double>(p =>
                         {
-                            string directoryDest = $".{directoryname.Substring(directoryname.LastIndexOf('\\'))}";
-                            if (!ignoredDirectoryList.Contains(directoryDest))
+                            Application.Current.Dispatcher.Invoke(() =>
                             {
-                                Directory.Delete(directoryDest, true);
-                                Directory.Move(directoryname, directoryDest);
-                            }
+                                if (App.DownloadProgressBar != null)
+                                {
+                                    App.DownloadProgressBar.Visibility = Visibility.Visible;
+                                    App.DownloadProgressBar.Value = p;
+                                }
+                            });
+                        });
+
+                        await NetworkUtils.HttpDownloadFile(softwareLatestUrl, installerPath, progress);
+
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            if (App.DownloadProgressBar != null)
+                                App.DownloadProgressBar.Visibility = Visibility.Collapsed;
+                        });
+
+                        string computedHash;
+                        using (SHA256 sha = SHA256.Create())
+                        using (FileStream fs = new(installerPath, FileMode.Open, FileAccess.Read, FileShare.Read))
+                        {
+                            computedHash = BitConverter.ToString(sha.ComputeHash(fs)).Replace("-", "");
+                        }
+                        if (computedHash != softwareLatestSha256)
+                        {
+                            LogUtils.WriteError($"Installer hash mismatch: expected {softwareLatestSha256}, actual {computedHash}", new FileFormatException("FileHashInvalid"));
+                            throw new FileFormatException("FileHashInvalid");
                         }
 
-                        foreach (string filename in occupiedFileList)
+                        Process.Start(new ProcessStartInfo
                         {
-                            if (File.Exists(filename))
-                            {
-                                File.Move(filename, $"{filename}.bak", true);
-                            }
-                        }
+                            FileName = installerPath,
+                            UseShellExecute = true,
+                            WorkingDirectory = AppDomain.CurrentDomain.BaseDirectory,
+                        });
 
-                        foreach (string filename in Directory.GetFiles($@"{downloadDirectory}\TomatoRadar\"))
-                        {
-                            string fileDest = $".{filename.Substring(filename.LastIndexOf('\\'))}";
-                            if (!ignoredFileList.Contains(fileDest))
-                            {
-                                LogUtils.WriteInfo($"filename:{filename}, filedest:{fileDest}");
-                                File.Move(filename, fileDest, true);
-                            }
-                        }
-                        NotificationMessageUtils.CreateMessage(MessageType.INFO, Application.Current.FindResource("NotificationMessageSoftwareUpdateComplete") as string);
-                        MessageBox.Show(Application.Current.FindResource("MsgBoxSoftwareUpdateComplete") as string, Application.Current.FindResource("MsgBoxUpdate") as string, MessageBoxButton.OK, MessageBoxImage.Information);
-                        Application.Current.Shutdown();
-                        return true;
+                        _skipDirectoryCleanup = true;
+                        Environment.Exit(0);
                     }
                 }
 
@@ -170,9 +157,9 @@ namespace TomatoRadar.Utils
             }
             finally
             {
-                if (Directory.Exists($"{downloadDirectory}"))
+                if (!_skipDirectoryCleanup && Directory.Exists(DownloadDirectory))
                 {
-                    Directory.Delete($"{downloadDirectory}", true);
+                    Directory.Delete(DownloadDirectory, true);
                 }
             }
         }
@@ -186,35 +173,26 @@ namespace TomatoRadar.Utils
             if (MessageBox.Show($"{Application.Current.FindResource("MsgBoxShiplistUpdateFound") as string} ({shiplistLabel})\n{Application.Current.FindResource("MsgBoxCurrentVersion") as string} {currentVersionText} ({currentDateText})\n{Application.Current.FindResource("MsgBoxLatestVersion") as string} {entry.LatestVersion} ({entry.LatestDate})\n{Application.Current.FindResource("MsgBoxUpdateComfirm") as string}", Application.Current.FindResource("MsgBoxUpdate") as string, MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
             {
                 NotificationMessageUtils.CreateMessage(MessageType.INFO, $"{Application.Current.FindResource("NotificationMessageShiplistUpdateDownloading") as string} ({shiplistLabel})");
-                Directory.CreateDirectory(downloadDirectory);
-                await NetworkUtils.HttpDownloadFile(entry.LatestUrl, $@"{downloadDirectory}\{entry.LatestFileName}");
+                Directory.CreateDirectory(DownloadDirectory);
+                await NetworkUtils.HttpDownloadFile(entry.LatestUrl, $@"{DownloadDirectory}\{entry.LatestFileName}");
                 if (entry.HashValidateEnabled)
                 {
-                    using SHA256 sha = SHA256.Create();
-                    using FileStream fs = new($@"{downloadDirectory}\{entry.LatestFileName}", FileMode.Open);
-                    fs.Position = 0;
-                    string computedHash = BitConverter.ToString(sha.ComputeHash(fs)).Replace("-", "");
+                    string computedHash;
+                    using (SHA256 sha = SHA256.Create())
+                    using (FileStream fs = new($@"{DownloadDirectory}\{entry.LatestFileName}", FileMode.Open, FileAccess.Read, FileShare.Read))
+                    {
+                        computedHash = BitConverter.ToString(sha.ComputeHash(fs)).Replace("-", "");
+                    }
                     if (computedHash != entry.LatestSha256)
                     {
                         LogUtils.WriteError($"Shiplist hash mismatch for {entry.Key}: expected {entry.LatestSha256}, actual {computedHash}", new FileFormatException("FileHashInvalid"));
                         throw new FileFormatException("FileHashInvalid");
                     }
                 }
-                ZipFile.ExtractToDirectory($@"{downloadDirectory}\{entry.LatestFileName}", Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Resources\Json\"), true);
+                ZipFile.ExtractToDirectory($@"{DownloadDirectory}\{entry.LatestFileName}", App.ShipInfoDirectory, true);
                 ShipInfoUtils.LoadShipInfoForServer(entry.ReferenceServer);
                 NotificationMessageUtils.CreateMessage(MessageType.INFO, $"{Application.Current.FindResource("NotificationMessageShiplistUpdateComplete") as string} ({shiplistLabel})");
                 MessageBox.Show($"{Application.Current.FindResource("MsgBoxShiplistUpdateComplete") as string} ({shiplistLabel})", Application.Current.FindResource("MsgBoxUpdate") as string, MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-        }
-
-        public static void CleanOldVersionFiles()
-        {
-            foreach (string filename in occupiedFileList)
-            {
-                if (File.Exists($"{filename}.bak"))
-                {
-                    File.Delete($"{filename}.bak");
-                }
             }
         }
 

@@ -148,9 +148,9 @@
     <system:String x:Key="LabelWeightedWinrateShipBattlesAtMaxWeight">最大權重對應的單船場次</system:String>
     <system:String x:Key="LabelWeightedWinratePieChartDescriptionLine1">每種戰鬥類型在加權勝率中的佔比</system:String>
     <system:String x:Key="LabelWeightedWinratePieChartDescriptionLine2">（當單船場次 ≥ 最大權重對應的單船場次時）</system:String>
-    <system:String x:Key="LabelAboutLine1">本軟體完全免費，且以 MIT 授權條款開放原始碼。</system:String>
+    <system:String x:Key="LabelAboutLine1">本軟體完全免費，且以 GNU GPL 3.0 授權條款開放原始碼。</system:String>
     <system:String x:Key="LabelAboutLine2Part1">網站：</system:String>
-    <system:String xml:space="preserve" x:Key="LabelAboutLine2Part2">  QQ 群：1012624096 / 272868560</system:String>
+    <system:String xml:space="preserve" x:Key="LabelAboutLine2Part2">  QQ 群：616060379</system:String>
     <system:String x:Key="LabelWatchList">特別關注名單</system:String>
     <system:String x:Key="LabelPositive">正面</system:String>
     <system:String x:Key="LabelNegative">負面</system:String>
@@ -281,7 +281,7 @@
             <LineBreak/>
             右鍵按一下玩家以在網站上檢視其戰績或將其從特別關注名單中移除。
             <LineBreak/>
-            特別關注名單儲存在目前資料夾下的 WatchList.json 檔案中。
+            特別關注名單儲存在使用者資料目錄下的 WatchList.json 檔案中。
         </TextBlock>
     </ToolTip>
 
@@ -292,8 +292,8 @@
             WG Public API：不支援部分新功能。不支援俄服與國服。在這些伺服器上此選項將被忽略且只會使用 Vortex API。
             <LineBreak/>
             WG Public API（透過 Yuyuko 代理存取）：與 WG Public API 相同，但在中國境內的部分網路環境下可能會更穩定。
+            <!-- Lesta Public API：不支援部分新功能。僅支援俄服。 -->
             <LineBreak/>
-            Lesta Public API：不支援部分新功能。僅支援俄服。
             <LineBreak/>
             <LineBreak/>
             僅建議在 Vortex API 持續發生錯誤時選取其他選項。
@@ -369,6 +369,11 @@
     <system:String x:Key="ChkBoxEnableYuyukoAPIPush">啟用 Yuyuko API 推送服務（測試版）</system:String>
     <system:String x:Key="ChkBoxEnableDebugMode">啟用除錯模式</system:String>
 
+    <system:String x:Key="LabelDataDirectory">應用程式資料目錄</system:String>
+    <system:String x:Key="BtnOpenDirectory">開啟目錄</system:String>
+
+    <system:String x:Key="NotificationMessageCheckingForUpdates">正在檢查更新…</system:String>
+    <system:String x:Key="NotificationMessageWaitingForBattle">正在等待對局或Replay…</system:String>
     <system:String x:Key="NotificationMessageNewPlayersRevealed">{0} 名新玩家已偵測到</system:String>
     <system:String x:Key="NotificationMessageRetrivingData">正在從伺服器獲取資料，請稍候…</system:String>
     <system:String x:Key="NotificationMessageDataRetrieved">資料獲取成功。</system:String>

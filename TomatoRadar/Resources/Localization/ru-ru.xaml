@@ -149,9 +149,9 @@
     <system:String x:Key="LabelWeightedWinrateShipBattlesAtMaxWeight">Боёв на корабле при макс. весе</system:String>
     <system:String x:Key="LabelWeightedWinratePieChartDescriptionLine1">Вклад каждого типа боёв во взвешенный процент побед</system:String>
     <system:String x:Key="LabelWeightedWinratePieChartDescriptionLine2">(При боях на корабле ≥ Боёв на корабле при макс. весе)</system:String>
-    <system:String x:Key="LabelAboutLine1">Это приложение полностью бесплатно и имеет открытый исходный код под лицензией MIT.</system:String>
+    <system:String x:Key="LabelAboutLine1">Это приложение полностью бесплатно и имеет открытый исходный код под лицензией GNU GPL 3.0.</system:String>
     <system:String xml:space="preserve" x:Key="LabelAboutLine2Part1">Сайт: </system:String>
-    <system:String xml:space="preserve" x:Key="LabelAboutLine2Part2">  QQ группа: 1012624096 / 272868560</system:String>
+    <system:String xml:space="preserve" x:Key="LabelAboutLine2Part2">  QQ группа: 616060379</system:String>
     <system:String x:Key="LabelWatchList">Список наблюдения</system:String>
     <system:String x:Key="LabelPositive">Положительный</system:String>
     <system:String x:Key="LabelNegative">Отрицательный</system:String>
@@ -282,7 +282,7 @@
             <LineBreak/>
             Правый клик по игроку, чтобы посмотреть его статистику на сайтах или удалить из списка наблюдения.
             <LineBreak/>
-            Список наблюдения сохраняется в файле WatchList.json в папке приложения.
+            Список наблюдения сохраняется в файле WatchList.json в папке данных пользователя.
         </TextBlock>
     </ToolTip>
 
@@ -368,6 +368,11 @@
     <system:String x:Key="ChkBoxEnableYuyukoAPIPush">Включить Yuyuko API Push (Бета)</system:String>
     <system:String x:Key="ChkBoxEnableDebugMode">Включить режим отладки</system:String>
 
+    <system:String x:Key="LabelDataDirectory">Папка данных приложения</system:String>
+    <system:String x:Key="BtnOpenDirectory">Открыть папку</system:String>
+
+    <system:String x:Key="NotificationMessageCheckingForUpdates">Проверка обновлений...</system:String>
+    <system:String x:Key="NotificationMessageWaitingForBattle">Ожидание боя или реплея...</system:String>
     <system:String x:Key="NotificationMessageNewPlayersRevealed">Обнаружено новых игроков: {0}</system:String>
     <system:String x:Key="NotificationMessageRetrivingData">Получение данных с сервера, пожалуйста, подождите...</system:String>
     <system:String x:Key="NotificationMessageDataRetrieved">Данные успешно получены.</system:String>
