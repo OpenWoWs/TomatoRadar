@@ -147,6 +147,37 @@ namespace TomatoRadar.Utils
                 ParseMessagePackEntities(blk, entities);
             }
 
+            if (entities.Count == 0)
+            {
+                foreach (var blk in decompBlocks)
+                {
+                    if (blk.Length > 2 && blk[0] == 0x7B)
+                    {
+                        try
+                        {
+                            string jsonStr = Encoding.UTF8.GetString(blk);
+                            JObject jsonObj = JObject.Parse(jsonStr);
+                            JArray? vehicles = jsonObj["vehicles"] as JArray;
+                            if (vehicles != null)
+                            {
+                                LogUtils.WriteInfo("KorabliReplay [arena info]: found JSON vehicles array in decompressed block");
+                                foreach (var v in vehicles)
+                                {
+                                    string? vName = v["name"]?.Value<string>();
+                                    string? vShipId = v["shipId"]?.Value<string>();
+                                    int vRelation = v["relation"]?.Value<int>() ?? 1;
+                                    if (vName != null && vShipId != null && vRelation > 0)
+                                    {
+                                        entities.Add((vName, vName, ulong.Parse(vShipId), vRelation));
+                                    }
+                                }
+                            }
+                        }
+                        catch { }
+                    }
+                }
+            }
+
             string? currentPlayerName = null;
             int? observedTeam = null;
             foreach (var blk in decompBlocks)
@@ -257,21 +288,35 @@ namespace TomatoRadar.Utils
         {
             var entityRegions = new List<(int start, int end)>();
 
-            for (int i = 0; i <= data.Length - 6; i++)
+            for (int i = 0; i <= data.Length - 4; i++)
             {
+                if (data[i] != 0x92 || data[i + 1] != 0x00)
+                    continue;
+
                 bool isBoundary = false;
 
-                if (data[i] == 0x92 && data[i + 1] == 0x00 && data[i + 2] == 0xCE && i + 7 <= data.Length)
+                if (i + 7 <= data.Length && data[i + 2] == 0xCE)
                 {
                     uint acctId = (uint)(data[i + 3] << 24 | data[i + 4] << 16 | data[i + 5] << 8 | data[i + 6]);
                     if (acctId > 100)
                         isBoundary = true;
                 }
-
-                if (data[i] == 0x92 && data[i + 1] == 0x00 && data[i + 2] == 0xD2 && i + 7 <= data.Length)
+                else if (i + 7 <= data.Length && data[i + 2] == 0xD2)
                 {
                     int acctId = data[i + 3] << 24 | data[i + 4] << 16 | data[i + 5] << 8 | data[i + 6];
                     if (acctId < 0)
+                        isBoundary = true;
+                }
+                else if (i + 5 <= data.Length && data[i + 2] == 0xCD)
+                {
+                    ushort acctId = (ushort)(data[i + 3] << 8 | data[i + 4]);
+                    if (acctId > 100)
+                        isBoundary = true;
+                }
+                else if (i + 4 <= data.Length && data[i + 2] == 0xCC)
+                {
+                    byte acctId = data[i + 3];
+                    if (acctId > 100)
                         isBoundary = true;
                 }
 
@@ -308,17 +353,35 @@ namespace TomatoRadar.Utils
                     if (valOff >= entityEnd)
                         break;
 
-                    if (propId == 0x1C && valOff + 1 < data.Length && data[valOff] == 0xC4 && valOff + 2 + data[valOff + 1] <= data.Length)
+                    if (propId == 0x1C && valOff + 1 < data.Length)
                     {
-                        int slen = data[valOff + 1];
-                        if (slen >= 2 && slen <= 35)
-                            name = Encoding.ASCII.GetString(data, valOff + 2, slen);
+                        if (data[valOff] == 0xC4 && valOff + 2 + data[valOff + 1] <= data.Length)
+                        {
+                            int slen = data[valOff + 1];
+                            if (slen >= 2 && slen <= 64)
+                                name = Encoding.UTF8.GetString(data, valOff + 2, slen);
+                        }
+                        else if (data[valOff] == 0xD9 && valOff + 3 + (data[valOff + 1] << 8 | data[valOff + 2]) <= data.Length)
+                        {
+                            int slen = data[valOff + 1] << 8 | data[valOff + 2];
+                            if (slen >= 2 && slen <= 64)
+                                name = Encoding.UTF8.GetString(data, valOff + 3, slen);
+                        }
                     }
-                    else if (propId == 0x16 && valOff + 1 < data.Length && data[valOff] == 0xC4 && valOff + 2 + data[valOff + 1] <= data.Length)
+                    else if (propId == 0x16 && valOff + 1 < data.Length)
                     {
-                        int slen = data[valOff + 1];
-                        if (slen >= 2 && slen <= 35)
-                            name = Encoding.ASCII.GetString(data, valOff + 2, slen);
+                        if (data[valOff] == 0xC4 && valOff + 2 + data[valOff + 1] <= data.Length)
+                        {
+                            int slen = data[valOff + 1];
+                            if (slen >= 2 && slen <= 64)
+                                name = Encoding.UTF8.GetString(data, valOff + 2, slen);
+                        }
+                        else if (data[valOff] == 0xD9 && valOff + 3 + (data[valOff + 1] << 8 | data[valOff + 2]) <= data.Length)
+                        {
+                            int slen = data[valOff + 1] << 8 | data[valOff + 2];
+                            if (slen >= 2 && slen <= 64)
+                                name = Encoding.UTF8.GetString(data, valOff + 3, slen);
+                        }
                     }
                     else if (propId == 0x1D && valOff < data.Length)
                     {
