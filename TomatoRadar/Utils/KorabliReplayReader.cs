@@ -71,6 +71,8 @@ namespace TomatoRadar.Utils
                                 currentTeam = teamId;
                         }
 
+                        LogUtils.WriteInfo($"KorabliReplay [playersPublicInfo]: playerName={playerName}, currentTeam={currentTeam}, {players.Count} players");
+
                         int idCounter = 100;
                         foreach (var p in players)
                         {
@@ -160,16 +162,6 @@ namespace TomatoRadar.Utils
                 return null;
             }
 
-            foreach (var e in entities)
-            {
-                if (!e.displayName.StartsWith(":"))
-                {
-                    currentPlayerName = e.displayName;
-                    break;
-                }
-            }
-
-            string? arenaJsonPlayerName = null;
             try
             {
                 string? dir = Path.GetDirectoryName(filePath);
@@ -179,25 +171,11 @@ namespace TomatoRadar.Utils
                     if (File.Exists(arenaJsonPath))
                     {
                         JObject arenaJson = FileUtils.ReadTempArenaInfoFile(arenaJsonPath);
-                        JArray? vehicles = arenaJson["vehicles"] as JArray;
-                        if (vehicles != null)
-                        {
-                            foreach (var v in vehicles)
-                            {
-                                string? name = v["name"]?.Value<string>();
-                                if (name != null && !name.StartsWith(":"))
-                                {
-                                    arenaJsonPlayerName = name;
-                                    break;
-                                }
-                            }
-                        }
+                        currentPlayerName = arenaJson["playerName"]?.Value<string>();
                     }
                 }
             }
             catch { }
-
-            string? nameToMatch = arenaJsonPlayerName ?? currentPlayerName;
 
             int currentTeam;
             if (observedTeam.HasValue)
@@ -207,11 +185,11 @@ namespace TomatoRadar.Utils
             else
             {
                 int? matchedTeamId = null;
-                if (nameToMatch != null)
+                if (currentPlayerName != null)
                 {
                     foreach (var e in entities)
                     {
-                        if (string.Equals(e.displayName, nameToMatch, StringComparison.OrdinalIgnoreCase) && e.teamId >= 0)
+                        if (string.Equals(e.displayName, currentPlayerName, StringComparison.OrdinalIgnoreCase) && e.teamId >= 0)
                         {
                             matchedTeamId = e.teamId;
                             break;
@@ -241,7 +219,7 @@ namespace TomatoRadar.Utils
             var vehiclesArray = new JArray();
             int idCounter = 100;
 
-            LogUtils.WriteInfo($"KorabliReplay [arena info]: player={currentPlayerName}, team={currentTeam}");
+            LogUtils.WriteInfo($"KorabliReplay [arena info]: playerName={currentPlayerName}, observedTeam={observedTeam}, currentTeam={currentTeam}");
 
             foreach (var e in entities)
             {

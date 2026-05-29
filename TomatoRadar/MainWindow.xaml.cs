@@ -334,7 +334,7 @@ namespace TomatoRadar
                     return;
                 }
 
-                if (!File.Exists(_currentBattleFilePath))
+                if (_currentBattleFilePath != "" && !File.Exists(_currentBattleFilePath))
                 {
                     LogUtils.WriteInfo("Battle ended (temp file deleted). Resetting for next battle.");
                     DataContext = null;
@@ -695,6 +695,13 @@ namespace TomatoRadar
             dialog.Filter = "*.json, *.wowsreplay, *.korablireplay|*.json;*.wowsreplay;*.korablireplay";
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
+                DataContext = null;
+                WinrateChart.Series = Array.Empty<ISeries>();
+                KDEChart.Series = Array.Empty<ISeries>();
+                TxtOutputText.Text = "";
+                _currentBattleFilePath = dialog.FileName;
+                _currentBattleFileSize = new FileInfo(dialog.FileName).Length;
+                _dataLoadInProgress = true;
                 ReadPlayersListAndGetDataFromServer(dialog.FileName);
             }
         }
