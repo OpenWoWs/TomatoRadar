@@ -193,6 +193,20 @@ namespace TomatoRadar.Utils
                 return null;
             }
 
+            if (entities.Count > 0 && entities.All(e => e.teamId < 0))
+            {
+                var playerTeams = new List<int>();
+                foreach (var blk in decompBlocks)
+                {
+                    ExtractPlayerObservedTeams(blk, playerTeams);
+                }
+                LogUtils.WriteInfo($"KorabliReplay [arena info]: extracted {playerTeams.Count} player observedTeams for {entities.Count} entities");
+                for (int i = 0; i < entities.Count && i < playerTeams.Count; i++)
+                {
+                    entities[i] = (entities[i].name, entities[i].displayName, entities[i].shipId, playerTeams[i]);
+                }
+            }
+
             try
             {
                 string? dir = Path.GetDirectoryName(filePath);
@@ -450,6 +464,25 @@ namespace TomatoRadar.Utils
             }
 
             return null;
+        }
+
+        private static void ExtractPlayerObservedTeams(byte[] data, List<int> teams)
+        {
+            byte[] key = Encoding.UTF8.GetBytes("observedTeamId");
+            for (int i = 0; i <= data.Length - key.Length - 3; i++)
+            {
+                if (data[i] != 0xC4 || data[i + 1] != key.Length)
+                    continue;
+                bool match = true;
+                for (int j = 0; j < key.Length; j++)
+                    if (data[i + 2 + j] != key[j]) { match = false; break; }
+                if (!match) continue;
+                int valOff = i + 2 + key.Length;
+                if (valOff >= data.Length) continue;
+                int? t = DecodeMsgPackIntOrNil(data, valOff);
+                if (t.HasValue)
+                    teams.Add(t.Value);
+            }
         }
 
         private static int? ExtractObservedTeamFromMap(byte[] data, int mapStart, int regionEnd)
